@@ -1,1 +1,1 @@
-Pong 1 groups game: Pong<sup>2</sup>
+Pong 1's game: Pong<sup>2</sup>
