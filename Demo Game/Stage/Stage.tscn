@@ -33,7 +33,6 @@ position = Vector2(637.5, -10)
 shape = SubResource("RectangleShape2D_4ujn2")
 
 [node name="Opponent" parent="." instance=ExtResource("2_p04be")]
-script = null
 
 [node name="Ball" parent="." instance=ExtResource("3_poq0d")]
 position = Vector2(640, 360)
