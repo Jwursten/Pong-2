@@ -6,4 +6,4 @@ Resources used:
 - [Standard Pong Demo](https://www.youtube.com/watch?v=kr1BoEbuveI)
 
 
-- [Example Pong](https://github.com/zrckr/pong/tree/master)
+- [Example Pong Repo](https://github.com/zrckr/pong/tree/master)
