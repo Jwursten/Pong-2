@@ -1,14 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch4q32k7uycd7"]
+[gd_scene load_steps=5 format=3 uid="uid://ch4q32k7uycd7"]
 
 [ext_resource type="PackedScene" uid="uid://box4qfmp1mwhd" path="res://Player/player_1.tscn" id="1_vkcv5"]
-[ext_resource type="Texture2D" uid="uid://d046b3vbprqky" path="res://Assets/Assets/Pink_Square.png" id="2_e632i"]
 [ext_resource type="PackedScene" uid="uid://btqqyktcrmdar" path="res://Opponent/opponent.tscn" id="2_p04be"]
 [ext_resource type="PackedScene" uid="uid://d3bnbau462n6" path="res://Ball/ball.tscn" id="3_poq0d"]
-[ext_resource type="PackedScene" uid="uid://chudnf1cqb5un" path="res://Player3/Player3.tscn" id="5_pexpm"]
-[ext_resource type="PackedScene" uid="uid://dojjhtfmxuwcb" path="res://Player4/Player4.tscn" id="6_8g8be"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ujn2"]
-size = Vector2(1228, 10)
+size = Vector2(1295, 20)
 
 [node name="Stage" type="Node"]
 
@@ -21,38 +18,24 @@ grow_vertical = 2
 color = Color(0.0823529, 0.117647, 0.196078, 1)
 
 [node name="Player1" parent="." instance=ExtResource("1_vkcv5")]
-position = Vector2(25, 407)
+position = Vector2(30, 640)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-274, 10)
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(461, -15)
+position = Vector2(637.5, -10)
 shape = SubResource("RectangleShape2D_4ujn2")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-visible = false
-position = Vector2(357, -124)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_e632i")
-
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(-389, 818)
+position = Vector2(0, 1300)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(831, -9)
+position = Vector2(637.5, -10)
 shape = SubResource("RectangleShape2D_4ujn2")
 
 [node name="Opponent" parent="." instance=ExtResource("2_p04be")]
-position = Vector2(775, 396)
+position = Vector2(1250, 640)
 
 [node name="Ball" parent="." instance=ExtResource("3_poq0d")]
-position = Vector2(394, 400)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("5_pexpm")]
-position = Vector2(401, 146)
-
-[node name="CharacterBody2D2" parent="." instance=ExtResource("6_8g8be")]
-position = Vector2(402, 735)
+position = Vector2(640, 640)
