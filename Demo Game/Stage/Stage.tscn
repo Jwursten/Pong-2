@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch4q32k7uycd7"]
+[gd_scene load_steps=10 format=3 uid="uid://ch4q32k7uycd7"]
 
+[ext_resource type="Script" path="res://Stage/Stage.gd" id="1_oe0k2"]
 [ext_resource type="PackedScene" uid="uid://box4qfmp1mwhd" path="res://Player/player_1.tscn" id="1_vkcv5"]
 [ext_resource type="Texture2D" uid="uid://d046b3vbprqky" path="res://Assets/Assets/Pink_Square.png" id="2_e632i"]
 [ext_resource type="PackedScene" uid="uid://btqqyktcrmdar" path="res://Opponent/opponent.tscn" id="2_p04be"]
@@ -7,10 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://chudnf1cqb5un" path="res://Player3/Player3.tscn" id="5_pexpm"]
 [ext_resource type="PackedScene" uid="uid://dojjhtfmxuwcb" path="res://Player4/Player4.tscn" id="6_8g8be"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ujn2"]
-size = Vector2(1228, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8cpa"]
+size = Vector2(179.605, 179.605)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8aq2x"]
+size = Vector2(166, 635)
 
 [node name="Stage" type="Node"]
+script = ExtResource("1_oe0k2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -21,38 +26,116 @@ grow_vertical = 2
 color = Color(0.0823529, 0.117647, 0.196078, 1)
 
 [node name="Player1" parent="." instance=ExtResource("1_vkcv5")]
-position = Vector2(25, 407)
+position = Vector2(30, 450)
+scale = Vector2(0.9, 0.9)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-274, 10)
+[node name="player2" parent="." instance=ExtResource("2_p04be")]
+position = Vector2(870, 450)
+scale = Vector2(0.9, 0.9)
+
+[node name="Ball" parent="." instance=ExtResource("3_poq0d")]
+position = Vector2(450, 450)
+scale = Vector2(0.9, 0.9)
+
+[node name="Player4" parent="." instance=ExtResource("5_pexpm")]
+position = Vector2(450, 30)
+scale = Vector2(0.9, 0.9)
+
+[node name="Player3" parent="." instance=ExtResource("6_8g8be")]
+position = Vector2(450, 870)
+scale = Vector2(0.9, 0.9)
+
+[node name="TopLeftCorner" type="StaticBody2D" parent="."]
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(461, -15)
-shape = SubResource("RectangleShape2D_4ujn2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopLeftCorner"]
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_d8cpa")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-visible = false
-position = Vector2(357, -124)
+[node name="Sprite2D" type="Sprite2D" parent="TopLeftCorner/CollisionShape2D"]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_e632i")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(-389, 818)
+[node name="TopRightCorner" type="StaticBody2D" parent="."]
+position = Vector2(900, 0)
+rotation = -1.5708
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(831, -9)
-shape = SubResource("RectangleShape2D_4ujn2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopRightCorner"]
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_d8cpa")
 
-[node name="Opponent" parent="." instance=ExtResource("2_p04be")]
-position = Vector2(775, 396)
+[node name="Sprite2D" type="Sprite2D" parent="TopRightCorner/CollisionShape2D"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_e632i")
 
-[node name="Ball" parent="." instance=ExtResource("3_poq0d")]
-position = Vector2(394, 400)
+[node name="BottomLeftCorner" type="StaticBody2D" parent="."]
+position = Vector2(0, 900)
+metadata/_edit_group_ = true
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("5_pexpm")]
-position = Vector2(401, 146)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomLeftCorner"]
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_d8cpa")
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("6_8g8be")]
-position = Vector2(402, 735)
+[node name="Sprite2D" type="Sprite2D" parent="BottomLeftCorner/CollisionShape2D"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_e632i")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(900, 900)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_d8cpa")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_e632i")
+
+[node name="LeftGoal" type="Area2D" parent="."]
+position = Vector2(-164, 138)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGoal"]
+position = Vector2(73, 311.5)
+shape = SubResource("RectangleShape2D_8aq2x")
+
+[node name="RightGoal" type="Area2D" parent="."]
+position = Vector2(916, 139)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightGoal"]
+position = Vector2(73, 311.5)
+shape = SubResource("RectangleShape2D_8aq2x")
+
+[node name="TopGoal" type="Area2D" parent="."]
+position = Vector2(139, -17)
+rotation = -1.5708
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopGoal"]
+position = Vector2(73, 311.5)
+shape = SubResource("RectangleShape2D_8aq2x")
+
+[node name="BottomGoal" type="Area2D" parent="."]
+position = Vector2(138, 1060)
+rotation = -1.5708
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomGoal"]
+position = Vector2(73, 311.5)
+shape = SubResource("RectangleShape2D_8aq2x")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="body_entered" from="LeftGoal" to="." method="_on_left_goal_body_entered"]
+[connection signal="body_entered" from="RightGoal" to="." method="_on_right_goal_body_entered"]
+[connection signal="body_entered" from="TopGoal" to="." method="_on_top_goal_body_entered"]
+[connection signal="body_entered" from="BottomGoal" to="." method="_on_bottom_goal_body_entered"]
