@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Player/player_1.gd" id="1_f3ef7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50kj1"]
-size = Vector2(29, 120)
+size = Vector2(30.5, 120)
 
 [node name="Player1" type="CharacterBody2D"]
 position = Vector2(30, 360)
@@ -12,6 +12,7 @@ script = ExtResource("1_f3ef7")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.75, 0)
 shape = SubResource("RectangleShape2D_50kj1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

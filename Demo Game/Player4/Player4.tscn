@@ -12,9 +12,9 @@ rotation = -1.5708
 script = ExtResource("1_01igp")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_k53fo")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.98023e-08, 0)
 shape = SubResource("RectangleShape2D_jpnks")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_k53fo")
