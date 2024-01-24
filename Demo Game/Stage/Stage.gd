@@ -1,27 +1,62 @@
 extends Node
 
+var PlayerOneScore = 7
+var PlayerTwoScore = 7
+var PlayerThreeScore = 7
+var PlayerFourScore = 7
 
+func goal_scored():
+	$Ball.position = Vector2(450, 450)
+	get_tree().call_group('BallGroup', 'stop_ball')
+	$CountDownTimer.start()
+	$Timer.visible = true
+	$PointLoss.play()
 
 func _on_left_goal_body_entered(body):
-	randomize()
-	$Ball.Velocity.x = [-1, 1][randi() % 2]
-	$Ball.Velocity.y = [-0.8, 0.8][randi() % 2]
-	$Ball.position = Vector2(450, 450)
+	PlayerOneScore -= 1
+	goal_scored()
 
 func _on_right_goal_body_entered(body):
-	randomize()
-	$Ball.Velocity.x = [-1, 1][randi() % 2]
-	$Ball.Velocity.y = [-0.8, 0.8][randi() % 2]
-	$Ball.position = Vector2(450, 450)
+	PlayerTwoScore -= 1
+	goal_scored()
 
 func _on_top_goal_body_entered(body):
-	randomize()
-	$Ball.Velocity.x = [-1, 1][randi() % 2]
-	$Ball.Velocity.y = [-0.8, 0.8][randi() % 2]
-	$Ball.position = Vector2(450, 450)
+	PlayerFourScore -= 1
+	goal_scored()
 
 func _on_bottom_goal_body_entered(body):
-	randomize()
-	$Ball.Velocity.x = [-1, 1][randi() % 2]
-	$Ball.Velocity.y = [-0.8, 0.8][randi() % 2]
-	$Ball.position = Vector2(450, 450)
+	PlayerThreeScore -= 1
+	goal_scored()
+
+func _process(delta):
+	$PlayerOneScore.text = str(PlayerOneScore)
+	$PlayerTwoScore.text = str(PlayerTwoScore)
+	$PlayerThreeScore.text = str(PlayerThreeScore)
+	$PlayerFourScore.text = str(PlayerFourScore)
+	$Timer.text = str(int($CountDownTimer.time_left))
+	
+
+func _on_count_down_timer_timeout():
+	get_tree().call_group('BallGroup', 'ball_continue')
+	$Timer.visible = false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

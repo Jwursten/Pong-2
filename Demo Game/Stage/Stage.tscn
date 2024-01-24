@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch4q32k7uycd7"]
+[gd_scene load_steps=11 format=3 uid="uid://ch4q32k7uycd7"]
 
 [ext_resource type="Script" path="res://Stage/Stage.gd" id="1_oe0k2"]
 [ext_resource type="PackedScene" uid="uid://box4qfmp1mwhd" path="res://Player/player_1.tscn" id="1_vkcv5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d3bnbau462n6" path="res://Ball/ball.tscn" id="3_poq0d"]
 [ext_resource type="PackedScene" uid="uid://chudnf1cqb5un" path="res://Player3/Player3.tscn" id="5_pexpm"]
 [ext_resource type="PackedScene" uid="uid://dojjhtfmxuwcb" path="res://Player4/Player4.tscn" id="6_8g8be"]
+[ext_resource type="AudioStream" uid="uid://cl1usgjf5x81k" path="res://Assets/Assets/ping_pong_8bit_beeep.ogg" id="8_rgs6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8cpa"]
 size = Vector2(179.605, 179.605)
@@ -24,6 +25,71 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0823529, 0.117647, 0.196078, 1)
+
+[node name="PlayerOneScore" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.709804, 0.419608, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Testing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerTwoScore" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.360784, 0.733333, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Testing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerThreeScore" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.67451, 0.94902, 0.517647, 1)
+theme_override_font_sizes/font_size = 30
+text = "Testing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerFourScore" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.996078, 0.337255, 0.384314, 1)
+theme_override_font_sizes/font_size = 30
+text = "Testing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.952941, 0.313726, 0.160784, 1)
+theme_override_font_sizes/font_size = 30
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Player1" parent="." instance=ExtResource("1_vkcv5")]
 position = Vector2(30, 450)
@@ -50,7 +116,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopLeftCorner"]
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_d8cpa")
 
 [node name="Sprite2D" type="Sprite2D" parent="TopLeftCorner/CollisionShape2D"]
@@ -64,7 +129,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopRightCorner"]
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_d8cpa")
 
 [node name="Sprite2D" type="Sprite2D" parent="TopRightCorner/CollisionShape2D"]
@@ -77,7 +141,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomLeftCorner"]
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_d8cpa")
 
 [node name="Sprite2D" type="Sprite2D" parent="BottomLeftCorner/CollisionShape2D"]
@@ -90,7 +153,6 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_d8cpa")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
@@ -131,11 +193,15 @@ metadata/_edit_group_ = true
 position = Vector2(73, 311.5)
 shape = SubResource("RectangleShape2D_8aq2x")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="CountDownTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="PointLoss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_rgs6c")
 
 [connection signal="body_entered" from="LeftGoal" to="." method="_on_left_goal_body_entered"]
 [connection signal="body_entered" from="RightGoal" to="." method="_on_right_goal_body_entered"]
 [connection signal="body_entered" from="TopGoal" to="." method="_on_top_goal_body_entered"]
 [connection signal="body_entered" from="BottomGoal" to="." method="_on_bottom_goal_body_entered"]
+[connection signal="timeout" from="CountDownTimer" to="." method="_on_count_down_timer_timeout"]
