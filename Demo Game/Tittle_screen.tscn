@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bisfbv118yoll"]
+[gd_scene load_steps=7 format=3 uid="uid://bisfbv118yoll"]
 
 [ext_resource type="Script" path="res://StartButten.gd" id="1_21mvk"]
+[ext_resource type="Texture2D" uid="uid://cvumlkax58t5y" path="res://Assets/Assets/Start-1-24-2024.png" id="1_ftiva"]
 [ext_resource type="Script" path="res://QuitButton.gd" id="2_2wsqv"]
+[ext_resource type="Texture2D" uid="uid://diqtlde6a4had" path="res://Assets/Assets/Quit-1-24-2024.png" id="3_v1fle"]
+[ext_resource type="Texture2D" uid="uid://gvqa2hy2qaru" path="res://Assets/Assets/PONG-2-1-24-2024.png" id="3_wsx01"]
+[ext_resource type="AudioStream" uid="uid://b5pdoecvaskv5" path="res://Assets/Assets/AdhesiveWombat - Night Shade.mp3" id="6_2etnn"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,23 +15,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.117647, 0.196078, 1)
+
 [node name="StartButten" type="Button" parent="."]
 layout_mode = 0
-offset_left = 388.0
-offset_top = 185.0
-offset_right = 499.0
-offset_bottom = 218.0
-text = "Start"
+offset_left = 335.0
+offset_top = 351.0
+offset_right = 1367.0
+offset_bottom = 810.0
+scale = Vector2(0.212943, 0.235635)
+icon = ExtResource("1_ftiva")
+icon_alignment = 1
 script = ExtResource("1_21mvk")
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 390.0
-offset_top = 232.0
-offset_right = 501.0
-offset_bottom = 265.0
-text = "Quit"
+offset_left = 337.0
+offset_top = 498.0
+offset_right = 1407.0
+offset_bottom = 1067.0
+scale = Vector2(0.208417, 0.187526)
+icon = ExtResource("3_v1fle")
 script = ExtResource("2_2wsqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(462, 193)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_wsx01")
+
+[node name="Backgound Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2etnn")
+autoplay = true
 
 [connection signal="pressed" from="StartButten" to="StartButten" method="_on_pressed"]
 [connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
