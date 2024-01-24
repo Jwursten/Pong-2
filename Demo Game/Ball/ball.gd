@@ -3,10 +3,22 @@ extends CharacterBody2D
 var Speed = 400
 var Velocity = Vector2.ZERO
 
-func _ready():
+func round_place(num,places):
+	return (round(num*pow(10,places))/pow(10,places))
+
+func randomNumber():
 	randomize()
-	Velocity.x = [-1, 1][randi() % 2]
-	Velocity.y = [-0.8, 0.8][randi() % 2]
+	var direction = [1, -1][randi() % 2]
+	var random_number = randf() * 1.6 + 0.2
+	random_number = round_place(random_number, 1)
+	return random_number
+
+func _ready():
+	Velocity.x = randomNumber()
+	if Velocity.x > 0:
+		Velocity.y = 2 - Velocity.x
+	else:
+		Velocity.y = -2 - Velocity.x
 
 func _physics_process(delta):
 	var collision_object = move_and_collide(Velocity * Speed * delta)
@@ -18,6 +30,9 @@ func stop_ball():
 	Speed = 0
 
 func ball_continue():
-	Speed = 600
-	Velocity.x = [-1, 1][randi() % 2]
-	Velocity.y = [-0.8, 0.8][randi() % 2]
+	Speed = 400
+	Velocity.x = randomNumber()
+	if Velocity.x > 0:
+		Velocity.y = 2 - Velocity.x
+	else:
+		Velocity.y = -2 - Velocity.x

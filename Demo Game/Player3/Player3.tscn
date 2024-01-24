@@ -7,7 +7,7 @@
 size = Vector2(31, 121)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(381, 119)
+position = Vector2(393, 784)
 rotation = 1.5708
 script = ExtResource("1_6d8ik")
 metadata/_edit_group_ = true

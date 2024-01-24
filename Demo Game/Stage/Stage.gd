@@ -1,9 +1,9 @@
 extends Node
 
-var PlayerOneScore = 7
-var PlayerTwoScore = 7
-var PlayerThreeScore = 7
-var PlayerFourScore = 7
+var PlayerOneScore = 0
+var PlayerTwoScore = 0
+var PlayerThreeScore = 0
+var PlayerFourScore = 0
 
 func goal_scored():
 	$Ball.position = Vector2(450, 450)
@@ -13,19 +13,19 @@ func goal_scored():
 	$PointLoss.play()
 
 func _on_left_goal_body_entered(body):
-	PlayerOneScore -= 1
+	PlayerOneScore += 1
 	goal_scored()
 
 func _on_right_goal_body_entered(body):
-	PlayerTwoScore -= 1
+	PlayerTwoScore += 1
 	goal_scored()
 
 func _on_top_goal_body_entered(body):
-	PlayerFourScore -= 1
+	PlayerFourScore += 1
 	goal_scored()
 
 func _on_bottom_goal_body_entered(body):
-	PlayerThreeScore -= 1
+	PlayerThreeScore += 1
 	goal_scored()
 
 func _process(delta):
