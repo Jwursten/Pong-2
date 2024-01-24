@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bisfbv118yoll"]
+
+[ext_resource type="Script" path="res://StartButten.gd" id="1_21mvk"]
+[ext_resource type="Script" path="res://QuitButton.gd" id="2_2wsqv"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButten" type="Button" parent="."]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 185.0
+offset_right = 499.0
+offset_bottom = 218.0
+text = "Start"
+script = ExtResource("1_21mvk")
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 232.0
+offset_right = 501.0
+offset_bottom = 265.0
+text = "Quit"
+script = ExtResource("2_2wsqv")
+
+[connection signal="pressed" from="StartButten" to="StartButten" method="_on_pressed"]
+[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
