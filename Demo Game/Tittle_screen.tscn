@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bisfbv118yoll"]
+[gd_scene load_steps=3 format=3 uid="uid://cnxq3ke0qfxs0"]
 
 [ext_resource type="Script" path="res://StartButten.gd" id="1_21mvk"]
 [ext_resource type="Script" path="res://QuitButton.gd" id="2_2wsqv"]

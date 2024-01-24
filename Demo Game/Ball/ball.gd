@@ -11,7 +11,7 @@ func randomNumber():
 	var direction = [1, -1][randi() % 2]
 	var random_number = randf() * 1.6 + 0.2
 	random_number = round_place(random_number, 1)
-	return random_number
+	return random_number * direction
 
 func _ready():
 	Velocity.x = randomNumber()
@@ -25,6 +25,7 @@ func _physics_process(delta):
 	if collision_object:
 		$CollisionSound.play()
 		Velocity = Velocity.bounce(collision_object.get_normal())
+		Speed = Speed + 20
 	
 func stop_ball():
 	Speed = 0

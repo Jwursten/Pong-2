@@ -29,6 +29,11 @@ func _on_bottom_goal_body_entered(body):
 	goal_scored()
 
 func _process(delta):
+	
+	#get_tree().call_group('BallGroup', 'stop_ball')
+	#$CountDownTimer.start()
+	#$Timer.visible = true
+	
 	$PlayerOneScore.text = str(PlayerOneScore)
 	$PlayerTwoScore.text = str(PlayerTwoScore)
 	$PlayerThreeScore.text = str(PlayerThreeScore)
