@@ -12,7 +12,7 @@ func randomNumber():
 	var random_number = randf() * 1.6 + 0.2
 	random_number = round_place(random_number, 1)
 	#if random_number % .5 == 0:
-		#random_number += 0.1
+		#random_number += 0.3
 	return random_number * direction
 
 func _ready():
