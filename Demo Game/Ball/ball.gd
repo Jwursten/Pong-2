@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var Speed = 400
+var Speed = 350
 var Velocity = Vector2.ZERO
 
 func round_place(num,places):
@@ -11,6 +11,8 @@ func randomNumber():
 	var direction = [1, -1][randi() % 2]
 	var random_number = randf() * 1.6 + 0.2
 	random_number = round_place(random_number, 1)
+	#if random_number % .5 == 0:
+		#random_number += 0.1
 	return random_number * direction
 
 func _ready():
@@ -31,7 +33,7 @@ func stop_ball():
 	Speed = 0
 
 func ball_continue():
-	Speed = 400
+	Speed = 350
 	Velocity.x = randomNumber()
 	if Velocity.x > 0:
 		Velocity.y = 2 - Velocity.x
