@@ -6,21 +6,33 @@ var Velocity = Vector2.ZERO
 func round_place(num,places):
 	return (round(num*pow(10,places))/pow(10,places))
 
-func randomNumber():
+func getDirection():
 	randomize()
-	var direction = [1, -1][randi() % 2]
+	var direction = 1
+	if randi() % 2 == 0:
+		direction = -1
+	return direction
+
+func randomNumber():
 	var random_number = randf() * 1.6 + 0.2
-	random_number = round_place(random_number, 1)
-	#if random_number % .5 == 0:
-		#random_number += 0.3
-	return random_number * direction
+	var speed = round_place(random_number, 1)
+	#if speed % 0.5 == 0.0:
+		#speed += 0.2
+	return speed
+
+func get_X_velocity():
+	var direction = getDirection()
+	var speed = randomNumber()
+	return speed * direction
+
+func get_Y_velocity(Velocity_X):
+	var direction = getDirection()
+	var Velocity_Y = 2 - abs(Velocity_X)
+	return Velocity_Y * direction
 
 func _ready():
-	Velocity.x = randomNumber()
-	if Velocity.x > 0:
-		Velocity.y = 2 - Velocity.x
-	else:
-		Velocity.y = -2 - Velocity.x
+	Velocity.x = get_X_velocity()
+	Velocity.y = get_Y_velocity(Velocity.x)
 
 func _physics_process(delta):
 	var collision_object = move_and_collide(Velocity * Speed * delta)
@@ -34,8 +46,4 @@ func stop_ball():
 
 func ball_continue():
 	Speed = 350
-	Velocity.x = randomNumber()
-	if Velocity.x > 0:
-		Velocity.y = 2 - Velocity.x
-	else:
-		Velocity.y = -2 - Velocity.x
+	_ready()

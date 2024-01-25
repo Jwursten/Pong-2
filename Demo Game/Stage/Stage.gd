@@ -12,23 +12,23 @@ func goal_scored():
 	$Timer.visible = true
 	$PointLoss.play()
 
-func _on_left_goal_body_entered(body):
+func _on_left_goal_body_entered(_body):
 	PlayerOneScore += 1
 	goal_scored()
 
-func _on_right_goal_body_entered(body):
+func _on_right_goal_body_entered(_body):
 	PlayerTwoScore += 1
 	goal_scored()
 
-func _on_top_goal_body_entered(body):
+func _on_top_goal_body_entered(_body):
 	PlayerFourScore += 1
 	goal_scored()
 
-func _on_bottom_goal_body_entered(body):
+func _on_bottom_goal_body_entered(_body):
 	PlayerThreeScore += 1
 	goal_scored()
 
-func _process(delta):
+func _process(_delta):
 	
 	#get_tree().call_group('BallGroup', 'stop_ball')
 	#$CountDownTimer.start()
