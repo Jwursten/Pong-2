@@ -80,6 +80,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameTimer" type="Label" parent="."]
+visible = false
 offset_left = 385.0
 offset_top = 343.0
 offset_right = 473.0
