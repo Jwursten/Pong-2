@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwel4eg5eiarc"]
+
+[ext_resource type="Texture2D" uid="uid://7hctx4wofooa" path="res://Assets/Assets/Options-1-29-2024.png" id="1_k6s8g"]
+[ext_resource type="Script" path="res://MusicVolume.gd" id="2_kesdu"]
+[ext_resource type="AudioStream" uid="uid://b5pdoecvaskv5" path="res://Assets/Assets/AdhesiveWombat - Night Shade.mp3" id="3_3hmmi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.117647, 0.196078, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(460, 163)
+scale = Vector2(0.67368, 0.718782)
+texture = ExtResource("1_k6s8g")
+
+[node name="MusicVolume" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 391.0
+offset_right = 352.0
+offset_bottom = 407.0
+max_value = 1.0
+step = 0.05
+script = ExtResource("2_kesdu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3hmmi")
+autoplay = true
+bus = &"music"
+
+[connection signal="value_changed" from="MusicVolume" to="MusicVolume" method="_on_value_changed"]
