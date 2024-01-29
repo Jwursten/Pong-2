@@ -6,4 +6,4 @@ Resources used:
 - [Standard Pong Demo](https://www.youtube.com/watch?v=kr1BoEbuveI)
 
 
-- [Godot Multiplayer](https://youtu.be/e0JLO_5UgQo?si=pSRFsSxWD0kp0cik
+- [Godot Multiplayer](https://youtu.be/e0JLO_5UgQo?si=pSRFsSxWD0kp0cik)
