@@ -26,9 +26,9 @@ color = Color(0.0823529, 0.117647, 0.196078, 1)
 [node name="StartButten" type="Button" parent="."]
 layout_mode = 0
 offset_left = 318.0
-offset_top = 302.0
+offset_top = 347.0
 offset_right = 1350.0
-offset_bottom = 761.0
+offset_bottom = 806.0
 scale = Vector2(0.249706, 0.290976)
 icon = ExtResource("1_ftiva")
 script = ExtResource("1_21mvk")
@@ -36,16 +36,16 @@ script = ExtResource("1_21mvk")
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 319.0
-offset_top = 489.0
+offset_top = 514.0
 offset_right = 1389.0
-offset_bottom = 1058.0
+offset_bottom = 1083.0
 scale = Vector2(0.23672, 0.228996)
 icon = ExtResource("3_v1fle")
 script = ExtResource("2_2wsqv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(462, 170)
-scale = Vector2(0.632794, 0.652976)
+position = Vector2(455, 206)
+scale = Vector2(0.697256, 0.784941)
 texture = ExtResource("3_wsx01")
 
 [connection signal="pressed" from="StartButten" to="StartButten" method="_on_pressed"]

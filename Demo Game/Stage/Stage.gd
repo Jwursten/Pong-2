@@ -9,9 +9,13 @@ func goal_scored():
 	$Ball.position = Vector2(450, 450)
 	get_tree().call_group('BallGroup', 'stop_ball')
 	$CountDownTimer.start()
-	$Timer.visible = true
+	$BallTimer.visible = true
 	$PointLoss.play()
 
+#func highest_score():
+	#if (PlayerOneScore > PlayerTwoScore and PlayerOneScore > PlayerThreeScore and PlayerOneScore > PlayerFourScore:
+		
+	
 func _on_left_goal_body_entered(_body):
 	PlayerOneScore += 1
 	goal_scored()
@@ -32,18 +36,18 @@ func _process(_delta):
 	
 	#get_tree().call_group('BallGroup', 'stop_ball')
 	#$CountDownTimer.start()
-	#$Timer.visible = true
+	#$GameTimer.visible = true
 	
 	$PlayerOneScore.text = str(PlayerOneScore)
 	$PlayerTwoScore.text = str(PlayerTwoScore)
 	$PlayerThreeScore.text = str(PlayerThreeScore)
 	$PlayerFourScore.text = str(PlayerFourScore)
-	$Timer.text = str(int($CountDownTimer.time_left))
+	$BallTimer.text = str(int($CountDownTimer.time_left))
 	
-
+	
 func _on_count_down_timer_timeout():
 	get_tree().call_group('BallGroup', 'ball_continue')
-	$Timer.visible = false
+	$BallTimer.visible = false
 
 
 

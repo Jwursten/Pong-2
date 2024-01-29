@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chudnf1cqb5un"]
 
-[ext_resource type="Texture2D" uid="uid://rbe6glsy72pk" path="res://Assets/Assets/Paddle.png" id="1_5xotl"]
 [ext_resource type="Script" path="res://Player3/Player3.gd" id="1_6d8ik"]
+[ext_resource type="Texture2D" uid="uid://dcaa2asy0267h" path="res://Assets/Assets/PaddleGreen.png" id="2_vx8tg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpnks"]
 size = Vector2(31, 121)
@@ -17,4 +17,4 @@ position = Vector2(-2.98023e-08, 0)
 shape = SubResource("RectangleShape2D_jpnks")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_5xotl")
+texture = ExtResource("2_vx8tg")
