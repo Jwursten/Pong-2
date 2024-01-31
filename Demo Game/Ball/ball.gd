@@ -16,8 +16,9 @@ func getDirection():
 func randomNumber():
 	var random_number = randf() * 1.6 + 0.2
 	var speed = round_place(random_number, 1)
-	#if speed % 0.5 == 0.0:
-		#speed += 0.2
+	var tolerance = 0.0001
+	if abs(speed - round(speed / 0.5) * 0.5) < tolerance:
+		speed += 0.2
 	return speed
 
 func get_X_velocity():

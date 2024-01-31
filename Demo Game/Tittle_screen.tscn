@@ -54,7 +54,6 @@ texture = ExtResource("3_wsx01")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ngr5d")
 autoplay = true
-bus = &"music"
 
 [node name="OptionsButton" type="Button" parent="."]
 layout_mode = 0
