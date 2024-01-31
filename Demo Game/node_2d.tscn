@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0n654f0qlkem"]
+
+[ext_resource type="Texture2D" uid="uid://cxdexh51qffu7" path="res://Assets/Assets/Player-2-Wins-1-25-2024.png" id="1_hy2s8"]
+
+[node name="Player-2-wins-1-25-2024" type="Sprite2D"]
+position = Vector2(456, 490)
+texture = ExtResource("1_hy2s8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -501.0
+offset_top = -160.0
+offset_right = -501.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.117647, 0.196078, 1)
+
+[node name="Player-2-wins-1-25-2024" type="Sprite2D" parent="."]
+position = Vector2(9, -14)
+texture = ExtResource("1_hy2s8")

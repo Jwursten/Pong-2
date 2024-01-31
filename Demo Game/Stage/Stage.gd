@@ -50,8 +50,17 @@ func _on_count_down_timer_timeout():
 	$BallTimer.visible = false
 
 
-
-
+func _game_ends():
+	if  int(PlayerOneScore)< int(PlayerTwoScore) and int(PlayerOneScore)< int(PlayerFourScore) and int(PlayerOneScore)< int(PlayerThreeScore):
+		get_tree().change_scene_to_file("res://player1win.tscn")
+	elif int(PlayerTwoScore)< int(PlayerOneScore) and int(PlayerTwoScore)< int(PlayerFourScore) and int(PlayerTwoScore)< int(PlayerThreeScore):
+		get_tree().change_scene_to_file("res://player2win.tscn")
+	elif int(PlayerThreeScore)< int(PlayerOneScore) and int(PlayerThreeScore)< int(PlayerFourScore) and int(PlayerThreeScore)< int(PlayerTwoScore):
+		get_tree().change_scene_to_file("res://player3win.tscn")
+	elif int(PlayerFourScore)< int(PlayerOneScore) and int(PlayerFourScore)< int(PlayerThreeScore) and int(PlayerFourScore)< int(PlayerTwoScore):
+		get_tree().change_scene_to_file("res://player4win.tscn")
+	else:
+		pass
 
 
 

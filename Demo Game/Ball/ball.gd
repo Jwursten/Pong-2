@@ -34,6 +34,9 @@ func get_Y_velocity(Velocity_X):
 func _ready():
 	Velocity.x = get_X_velocity()
 	Velocity.y = get_Y_velocity(Velocity.x)
+	while Velocity.x == Velocity.y:
+		Velocity.x = get_X_velocity()
+
 
 func _physics_process(delta):
 	var collision_object = move_and_collide(Velocity * Speed * delta)
@@ -48,3 +51,6 @@ func stop_ball():
 func ball_continue():
 	Speed = 350
 	_ready()
+func end_ball():
+	stop_ball()
+	$ball.visible = false
