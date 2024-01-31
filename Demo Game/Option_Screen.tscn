@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://7hctx4wofooa" path="res://Assets/Assets/Options-1-29-2024.png" id="1_k6s8g"]
 [ext_resource type="Script" path="res://MusicVolume.gd" id="2_kesdu"]
-[ext_resource type="AudioStream" uid="uid://b5pdoecvaskv5" path="res://Assets/Assets/AdhesiveWombat - Night Shade.mp3" id="3_3hmmi"]
+[ext_resource type="AudioStream" uid="uid://bn24x440s1ei7" path="res://Assets/Assets/Jeremy Blake - Powerup!.mp3" id="3_m14gc"]
 [ext_resource type="Texture2D" uid="uid://dw3xkvx5nj3ln" path="res://Assets/Assets/Music-1-31-2024.png" id="4_ojshb"]
 [ext_resource type="Texture2D" uid="uid://3ec1mrofy676" path="res://Assets/Assets/Effects-1-31-2024.png" id="5_iw620"]
 [ext_resource type="Script" path="res://SFXVolume.gd" id="6_46ujl"]
@@ -42,7 +42,7 @@ step = 0.05
 script = ExtResource("2_kesdu")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_3hmmi")
+stream = ExtResource("3_m14gc")
 autoplay = true
 bus = &"Music"
 

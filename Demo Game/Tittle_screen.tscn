@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://QuitButton.gd" id="2_2wsqv"]
 [ext_resource type="Texture2D" uid="uid://diqtlde6a4had" path="res://Assets/Assets/Quit-1-24-2024.png" id="3_v1fle"]
 [ext_resource type="Texture2D" uid="uid://gvqa2hy2qaru" path="res://Assets/Assets/PONG-2-1-24-2024.png" id="3_wsx01"]
-[ext_resource type="AudioStream" uid="uid://b5pdoecvaskv5" path="res://Assets/Assets/AdhesiveWombat - Night Shade.mp3" id="6_ngr5d"]
+[ext_resource type="AudioStream" uid="uid://bn24x440s1ei7" path="res://Assets/Assets/Jeremy Blake - Powerup!.mp3" id="6_u7y3j"]
 [ext_resource type="Texture2D" uid="uid://7hctx4wofooa" path="res://Assets/Assets/Options-1-29-2024.png" id="7_8q4qy"]
 [ext_resource type="Script" path="res://OptionsButton.gd" id="8_a30f4"]
 
@@ -53,7 +53,7 @@ scale = Vector2(0.697256, 0.784941)
 texture = ExtResource("3_wsx01")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_ngr5d")
+stream = ExtResource("6_u7y3j")
 autoplay = true
 bus = &"Music"
 
