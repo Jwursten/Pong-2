@@ -33,6 +33,7 @@ offset_top = 347.0
 offset_right = 1350.0
 offset_bottom = 806.0
 scale = Vector2(0.249706, 0.290976)
+theme_override_colors/font_color = Color(0.145098, 0.196078, 0.231373, 1)
 icon = ExtResource("1_ftiva")
 script = ExtResource("1_21mvk")
 
@@ -51,10 +52,10 @@ position = Vector2(455, 206)
 scale = Vector2(0.697256, 0.784941)
 texture = ExtResource("3_wsx01")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ngr5d")
 autoplay = true
-bus = &"music"
+bus = &"Music"
 
 [node name="OptionsButton" type="Button" parent="."]
 layout_mode = 0
