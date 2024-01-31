@@ -1,7 +1,7 @@
 extends HSlider
 
 
-@export var bus_name := "Music"
+@export var bus_name := "Sfx"
 
 
 var bus_index: int

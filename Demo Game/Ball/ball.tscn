@@ -19,3 +19,4 @@ texture = ExtResource("1_d43sg")
 
 [node name="CollisionSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6fbbx")
+bus = &"Sfx"
