@@ -6,73 +6,71 @@
 script = ExtResource("1_j1j3c")
 
 [node name="NameInput" type="LineEdit" parent="."]
-offset_left = 17.0
-offset_top = 48.0
-offset_right = 199.0
-offset_bottom = 79.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 96.0
 
 [node name="NameLabel" type="RichTextLabel" parent="."]
-offset_left = 15.0
-offset_top = 18.0
-offset_right = 86.0
-offset_bottom = 45.0
+offset_left = 64.0
+offset_top = 32.0
+offset_right = 135.0
+offset_bottom = 64.0
 text = "Name:"
 
 [node name="HostButton" type="Button" parent="."]
-offset_left = 247.0
-offset_top = 42.0
-offset_right = 340.0
-offset_bottom = 89.0
+offset_left = 288.0
+offset_top = 64.0
+offset_right = 352.0
+offset_bottom = 96.0
 text = "Host"
 
 [node name="JoinButton" type="Button" parent="."]
 offset_left = 480.0
-offset_top = 43.0
-offset_right = 556.0
-offset_bottom = 88.0
+offset_top = 64.0
+offset_right = 544.0
+offset_bottom = 96.0
 text = "Join"
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 372.0
-offset_top = 42.0
-offset_right = 450.0
-offset_bottom = 89.0
+offset_left = 384.0
+offset_top = 64.0
+offset_right = 448.0
+offset_bottom = 96.0
 text = "Start"
 
 [node name="PlayersLabel" type="RichTextLabel" parent="."]
-offset_left = 23.0
-offset_top = 179.0
-offset_right = 102.0
-offset_bottom = 209.0
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 640.0
+offset_bottom = 384.0
 text = "Players:"
 
 [node name="IpInput" type="LineEdit" parent="."]
 unique_name_in_owner = true
-visible = false
-offset_left = 682.0
-offset_top = 47.0
+offset_left = 672.0
+offset_top = 64.0
 offset_right = 832.0
-offset_bottom = 78.0
+offset_bottom = 95.0
 
 [node name="ConnectButton" type="Button" parent="."]
 unique_name_in_owner = true
-visible = false
-offset_left = 720.0
-offset_top = 91.0
+offset_left = 712.0
+offset_top = 96.0
 offset_right = 792.0
-offset_bottom = 135.0
+offset_bottom = 128.0
 text = "Connect"
 
 [node name="IpLabel" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
-visible = false
-offset_left = 589.0
-offset_top = 51.0
-offset_right = 693.0
-offset_bottom = 81.0
+offset_left = 576.0
+offset_top = 64.0
+offset_right = 672.0
+offset_bottom = 96.0
 text = "Ip Address: "
 
-[connection signal="focus_exited" from="NameLabel" to="." method="_on_name_label_focus_exited"]
+[connection signal="focus_exited" from="NameInput" to="." method="_on_name_input_focus_exited"]
+[connection signal="text_changed" from="NameInput" to="." method="_on_name_input_text_changed"]
 [connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
