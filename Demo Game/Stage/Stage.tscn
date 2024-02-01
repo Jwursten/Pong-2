@@ -219,10 +219,11 @@ stream = ExtResource("9_als0k")
 autoplay = true
 
 [node name="GameTime" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 60.0
 
 [connection signal="body_entered" from="LeftGoal" to="." method="_on_left_goal_body_entered"]
 [connection signal="body_entered" from="RightGoal" to="." method="_on_right_goal_body_entered"]
 [connection signal="body_entered" from="TopGoal" to="." method="_on_top_goal_body_entered"]
 [connection signal="body_entered" from="BottomGoal" to="." method="_on_bottom_goal_body_entered"]
 [connection signal="timeout" from="CountDownTimer" to="." method="_on_count_down_timer_timeout"]
+[connection signal="timeout" from="GameTime" to="." method="_on_game_time_timeout"]
