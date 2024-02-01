@@ -9,7 +9,7 @@ var filePath = "user://playerName.json"
 var errorMsg = ""
 
 
-@export var Address = "111.111.111.111"
+@export var Address = "localHost"
 var port = 3944
 
 var Compresstion = ENetConnection.COMPRESS_NONE
@@ -21,6 +21,10 @@ var IpLabelNode
 var ConnectButtonNode
 
 var PlayerNameInputNode
+
+var ConnectedLabelNode
+var HostButtonNode
+var StartButtonNode
 
 
 # Called when the node enters the scene tree for the first time.
@@ -50,6 +54,12 @@ func _ready():
 	PlayerNameInputNode = get_node("%NameInput")
 
 	PlayerNameInputNode.text = PlayerName
+
+	ConnectedLabelNode = get_node("ConnectedLabel")
+	ConnectedLabelNode.visible = false
+
+	HostButtonNode = get_node("HostButton")
+	StartButtonNode = get_node("StartButton")
 	
 
 
@@ -63,21 +73,44 @@ func saveName(name:String) -> void:
 
 	file.close()
 
-
+# called on client and server
 func PlayerConnected(id):
 	PrintToUser("Player #" + str(id) + " Connected.")
 
+# callend on client and server
 func PlayerDisconnected(id):
 	PrintToUser("Player #" + str(id) + " Disconnected.")
 
+# called only on client
 func ConnectedToServer():
 	PrintToUser("Connected to Server")
 
+	HostButtonNode.visible = false
+	ConnectedLabelNode.visible = true
+
+	SendPlayerInfo.rpc_id(1, name, multiplayer.get_unique_id())
+
+# called only on client
 func ConnectionFailed():
 	PrintToUser("Failed Connection")
 
+
+@rpc("any_peer")
+func SendPlayerInfo(id, name):
+	if !GameManager.Players.has(id):
+		GameManager.Players[id] = {
+			"name": name,
+			"id": id,
+			"score": 0
+		}
+	
+	if multiplayer.is_server():
+		for i in GameManager.Players:
+			SendPlayerInfo.rpc(GameManager.Players[i].name, i)
+		
+
 func _on_start_button_pressed():
-	pass # Replace with function body.
+	StartGame.rpc()
 
 
 func _on_join_button_pressed():
@@ -94,20 +127,29 @@ func showJoinNodes():
 
 func _on_host_button_pressed():
 
-	hideJoinNodes()
-	peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(port, 4)
+	if HostButtonNode.visible == true:
 
-	if (error != OK):
-		PrintToUser("Cannot Host: `" + error + "`")
-		return
-	
-	peer.get_host().compress(Compresstion)
+		hideJoinNodes()
+		peer = ENetMultiplayerPeer.new()
+		var error = peer.create_server(port, 4)
 
-	multiplayer.set_multiplayer_peer(peer)
-	PrintToUser("Waiting for Players")
+		if (error != OK):
+			PrintToUser("Cannot Host: `" + error + "`")
+			return
+		
+		peer.get_host().compress(Compresstion)
 
+		multiplayer.set_multiplayer_peer(peer)
+		SendPlayerInfo(name, multiplayer.get_unique_id())
+		PrintToUser("Waiting for Players")
 
+@rpc("any_peer", "call_local")
+func StartGame():
+	var gameScene = load("res://Stage/Stage.tscn").instantiate()
+
+	get_tree().root.add_child(gameScene)
+
+	self.hide()
 
 func _on_connect_pressed():
 
@@ -125,6 +167,9 @@ func _on_connect_pressed():
 
 func ValidateIp(ipAddress:String) -> bool:
 	
+	if (ipAddress == "localhost"):
+		return true
+
 	var splitAddress = ipAddress.split(".")
 
 	var counter = 1;
@@ -152,9 +197,6 @@ func ValidateIp(ipAddress:String) -> bool:
 	return true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func PrintToUser(msg:String) -> void:
 	print(msg)
@@ -165,3 +207,12 @@ func _on_name_input_text_changed(new_text:String):
 
 func _on_name_input_focus_exited():
 	saveName(PlayerNameInputNode.text)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var output = "[b]Players:[\b]\n"
+
+	for player in GameManager.Players:
+		output = output + player["name"] + " - " + player["id"] + "\n"
+	
