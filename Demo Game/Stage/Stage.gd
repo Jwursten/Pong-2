@@ -12,9 +12,8 @@ func goal_scored():
 	$BallTimer.visible = true
 	$PointLoss.play()
 
-#func highest_score():
-	#if (PlayerOneScore > PlayerTwoScore and PlayerOneScore > PlayerThreeScore and PlayerOneScore > PlayerFourScore:
-		
+func _ready():
+	$GameTime.start()
 	
 func _on_left_goal_body_entered(_body):
 	PlayerOneScore += 1
@@ -43,6 +42,7 @@ func _process(_delta):
 	$PlayerThreeScore.text = str(PlayerThreeScore)
 	$PlayerFourScore.text = str(PlayerFourScore)
 	$BallTimer.text = str(int($CountDownTimer.time_left))
+	$GameTimeLabel.text = str(int($GameTime.time_left))
 	
 	
 func _on_count_down_timer_timeout():
