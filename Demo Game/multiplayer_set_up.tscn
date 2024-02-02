@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlccht6q4vtl5"]
+
+[ext_resource type="Script" path="res://MultiplayerControler.gd" id="1_j1j3c"]
+
+[sub_resource type="GDScript" id="GDScript_3tl6r"]
+script/source = "extends RichTextLabel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="MultiplayerSetUp" type="Node2D"]
+script = ExtResource("1_j1j3c")
+
+[node name="NameInput" type="LineEdit" parent="."]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 96.0
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+offset_left = 64.0
+offset_top = 32.0
+offset_right = 135.0
+offset_bottom = 64.0
+text = "Name:"
+
+[node name="HostButton" type="Button" parent="."]
+offset_left = 288.0
+offset_top = 64.0
+offset_right = 352.0
+offset_bottom = 96.0
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="."]
+offset_left = 480.0
+offset_top = 64.0
+offset_right = 544.0
+offset_bottom = 96.0
+text = "Join"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 384.0
+offset_top = 64.0
+offset_right = 448.0
+offset_bottom = 96.0
+text = "Start"
+
+[node name="PlayersLabel" type="RichTextLabel" parent="."]
+offset_left = 62.0
+offset_top = 192.0
+offset_right = 638.0
+offset_bottom = 448.0
+bbcode_enabled = true
+text = "Players:"
+script = SubResource("GDScript_3tl6r")
+
+[node name="IpInput" type="LineEdit" parent="."]
+unique_name_in_owner = true
+offset_left = 672.0
+offset_top = 64.0
+offset_right = 832.0
+offset_bottom = 95.0
+
+[node name="ConnectButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 712.0
+offset_top = 96.0
+offset_right = 792.0
+offset_bottom = 128.0
+text = "Connect"
+
+[node name="IpLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+offset_left = 576.0
+offset_top = 64.0
+offset_right = 672.0
+offset_bottom = 96.0
+text = "Ip Address: "
+
+[node name="ConnectedLabel" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 272.0
+offset_top = 64.0
+offset_right = 368.0
+offset_bottom = 96.0
+text = "Connected"
+
+[connection signal="focus_exited" from="NameInput" to="." method="_on_name_input_focus_exited"]
+[connection signal="text_changed" from="NameInput" to="." method="_on_name_input_text_changed"]
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ConnectButton" to="." method="_on_connect_pressed"]
