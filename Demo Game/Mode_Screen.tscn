@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://jyrmy21xeh4h"]
+
+[ext_resource type="Texture2D" uid="uid://bvo0l7oymel7k" path="res://Assets/Assets/Mode-2-1-2024.png" id="1_j8630"]
+[ext_resource type="Texture2D" uid="uid://d3qyxxeod2qdc" path="res://Assets/Assets/Multiplayer-2-1-2024.png" id="2_8bofn"]
+[ext_resource type="Script" path="res://Multiplayer.gd" id="3_cx80m"]
+[ext_resource type="Texture2D" uid="uid://c0x70dma176r4" path="res://Assets/Assets/Arcade-2-1-2024.png" id="4_y3xi4"]
+[ext_resource type="Script" path="res://Arcade.gd" id="5_15fqp"]
+[ext_resource type="Texture2D" uid="uid://cj4wu1tw6wxqn" path="res://Assets/Assets/Solo-2-1-2024.png" id="6_w0xsu"]
+[ext_resource type="Script" path="res://Solo_Loser.gd" id="7_xhllp"]
+[ext_resource type="Texture2D" uid="uid://cjoantuj6kug" path="res://Assets/Assets/Quit-2-1-2024.png" id="8_hplm0"]
+[ext_resource type="Script" path="res://Quit.gd" id="9_ljrlp"]
+[ext_resource type="AudioStream" uid="uid://bn24x440s1ei7" path="res://Assets/Assets/Jeremy Blake - Powerup!.mp3" id="10_vmsgs"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.117647, 0.196078, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(453, 143)
+scale = Vector2(0.68733, 0.721462)
+texture = ExtResource("1_j8630")
+
+[node name="Multiplayer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 248.0
+offset_right = 1270.0
+offset_bottom = 552.0
+scale = Vector2(0.402512, 0.524991)
+icon = ExtResource("2_8bofn")
+script = ExtResource("3_cx80m")
+
+[node name="Arcade" type="Button" parent="."]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 431.0
+offset_right = 1275.0
+offset_bottom = 798.0
+scale = Vector2(0.402278, 0.420438)
+icon = ExtResource("4_y3xi4")
+script = ExtResource("5_15fqp")
+
+[node name="Solo_Loser" type="Button" parent="."]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 616.0
+offset_right = 1294.0
+offset_bottom = 1152.0
+scale = Vector2(0.374429, 0.333131)
+icon = ExtResource("6_w0xsu")
+script = ExtResource("7_xhllp")
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 782.0
+offset_right = 1051.0
+offset_bottom = 1351.0
+scale = Vector2(0.15537, 0.167751)
+icon = ExtResource("8_hplm0")
+script = ExtResource("9_ljrlp")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_vmsgs")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="Multiplayer" to="Multiplayer" method="_on_pressed"]
+[connection signal="pressed" from="Arcade" to="Arcade" method="_on_pressed"]
+[connection signal="pressed" from="Solo_Loser" to="Solo_Loser" method="_on_pressed"]
+[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
