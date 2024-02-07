@@ -14,9 +14,8 @@ var PlayerScenes = [
 	Player4Scene
 ]
 
-func _ready():
 
-	Player1Scene = get_scen
+func _ready():
 
 	var index = 0
 	for i in GameManager.Players:
@@ -28,6 +27,10 @@ func _ready():
 
 
 		index += 1;
+	# we need to spawn in players instead of useing object existing in the scene.
+
+	$GameTime.start()
+	
 
 func AddPlayer(id) -> bool:
 	if PlayerList.len < 4:
@@ -57,12 +60,7 @@ func goal_scored():
 	$BallTimer.visible = true
 	$PointLoss.play()
 
-func _ready():
 
-	# we need to spawn in players instead of useing object existing in the scene.
-
-	$GameTime.start()
-	
 func _on_left_goal_body_entered(_body):
 	PlayerOneScore += 1
 	goal_scored()
