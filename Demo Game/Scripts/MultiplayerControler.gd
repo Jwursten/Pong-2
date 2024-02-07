@@ -219,7 +219,7 @@ func _on_name_input_focus_exited():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var output = "[b]Players:[\b]\n"
 
 	for player in GameManager.Players:
