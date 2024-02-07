@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://jyrmy21xeh4h"]
 
-[ext_resource type="Texture2D" uid="uid://bvo0l7oymel7k" path="res://Assets/Assets/Mode-2-1-2024.png" id="1_j8630"]
-[ext_resource type="Texture2D" uid="uid://d3qyxxeod2qdc" path="res://Assets/Assets/Multiplayer-2-1-2024.png" id="2_8bofn"]
+[ext_resource type="Texture2D" uid="uid://cqsaxjite437e" path="res://Assets/Assets/Mode-2-1-2024.png" id="1_j8630"]
+[ext_resource type="Texture2D" uid="uid://cv4iv6trhwap2" path="res://Assets/Assets/Multiplayer-2-1-2024.png" id="2_8bofn"]
 [ext_resource type="Script" path="res://Multiplayer.gd" id="3_cx80m"]
-[ext_resource type="Texture2D" uid="uid://c0x70dma176r4" path="res://Assets/Assets/Arcade-2-1-2024.png" id="4_y3xi4"]
+[ext_resource type="Texture2D" uid="uid://cuvn1s3lc4dul" path="res://Assets/Assets/Arcade-2-1-2024.png" id="4_y3xi4"]
 [ext_resource type="Script" path="res://Arcade.gd" id="5_15fqp"]
-[ext_resource type="Texture2D" uid="uid://cj4wu1tw6wxqn" path="res://Assets/Assets/Solo-2-1-2024.png" id="6_w0xsu"]
+[ext_resource type="Texture2D" uid="uid://cjomhwrnqdfek" path="res://Assets/Assets/Solo-2-1-2024.png" id="6_w0xsu"]
 [ext_resource type="Script" path="res://Solo_Loser.gd" id="7_xhllp"]
-[ext_resource type="Texture2D" uid="uid://cjoantuj6kug" path="res://Assets/Assets/Quit-2-1-2024.png" id="8_hplm0"]
+[ext_resource type="Texture2D" uid="uid://kljf3yadludv" path="res://Assets/Assets/Quit-2-1-2024.png" id="8_hplm0"]
 [ext_resource type="Script" path="res://Quit.gd" id="9_ljrlp"]
 [ext_resource type="AudioStream" uid="uid://bn24x440s1ei7" path="res://Assets/Assets/Jeremy Blake - Powerup!.mp3" id="10_vmsgs"]
 
