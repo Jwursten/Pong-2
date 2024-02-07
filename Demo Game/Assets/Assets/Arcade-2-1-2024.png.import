@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2yjsban7ft6n"
-path="res://.godot/imported/Draw-1-31-2024.png-bdaa5894dca6cb7fd90a4bae19b0147b.ctex"
+uid="uid://c0x70dma176r4"
+path="res://.godot/imported/Arcade-2-1-2024.png-ffa7de9b166ea40336f4c8277d162181.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Assets/Draw-1-31-2024.png"
-dest_files=["res://.godot/imported/Draw-1-31-2024.png-bdaa5894dca6cb7fd90a4bae19b0147b.ctex"]
+source_file="res://Assets/Assets/Arcade-2-1-2024.png"
+dest_files=["res://.godot/imported/Arcade-2-1-2024.png-ffa7de9b166ea40336f4c8277d162181.ctex"]
 
 [params]
 
