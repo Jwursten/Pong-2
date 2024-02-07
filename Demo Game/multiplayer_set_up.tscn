@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlccht6q4vtl5"]
 
-[ext_resource type="Script" path="res://MultiplayerControler.gd" id="1_j1j3c"]
+[ext_resource type="Script" path="res://Scripts/MultiplayerControler.gd" id="1_j1j3c"]
 
 [sub_resource type="GDScript" id="GDScript_3tl6r"]
 script/source = "extends RichTextLabel

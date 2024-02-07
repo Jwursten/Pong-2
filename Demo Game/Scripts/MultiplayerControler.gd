@@ -63,15 +63,9 @@ func _ready():
 	
 
 
-func saveName(name:String) -> void:
-	
-	PlayerName = name
 
-	var file = FileAccess.open(filePath, FileAccess.WRITE)
 
-	file.store_string(PlayerName)
-
-	file.close()
+# ==== Connection Listeners ====
 
 # called on client and server
 func PlayerConnected(id):
@@ -95,11 +89,13 @@ func ConnectionFailed():
 	PrintToUser("Failed Connection")
 
 
+# ==== RPC functions ====
+
 @rpc("any_peer")
-func SendPlayerInfo(id, name):
+func SendPlayerInfo(id, nameInput):
 	if !GameManager.Players.has(id):
 		GameManager.Players[id] = {
-			"name": name,
+			"name": nameInput,
 			"id": id,
 			"score": 0
 		}
@@ -107,7 +103,17 @@ func SendPlayerInfo(id, name):
 	if multiplayer.is_server():
 		for i in GameManager.Players:
 			SendPlayerInfo.rpc(GameManager.Players[i].name, i)
+
+
+@rpc("any_peer", "call_local")
+func StartGame():
+	var gameScene = load("res://Stage/Stage.tscn").instantiate()
+
+	get_tree().root.add_child(gameScene)
+
+	self.hide()
 		
+# ==== Button Listeners ====
 
 func _on_start_button_pressed():
 	StartGame.rpc()
@@ -115,14 +121,6 @@ func _on_start_button_pressed():
 
 func _on_join_button_pressed():
 	showJoinNodes()
-
-func hideJoinNodes():
-	for node in JoinNodes:
-		node.visible = false
-
-func showJoinNodes():
-	for node in JoinNodes:
-		node.visible = true
 
 
 func _on_host_button_pressed():
@@ -143,14 +141,6 @@ func _on_host_button_pressed():
 		SendPlayerInfo(name, multiplayer.get_unique_id())
 		PrintToUser("Waiting for Players")
 
-@rpc("any_peer", "call_local")
-func StartGame():
-	var gameScene = load("res://Stage/Stage.tscn").instantiate()
-
-	get_tree().root.add_child(gameScene)
-
-	self.hide()
-
 func _on_connect_pressed():
 
 	Address = IpInputNode.text
@@ -163,7 +153,26 @@ func _on_connect_pressed():
 
 
 
-	pass # Replace with function body.
+# ==== Utilities ====
+
+func hideJoinNodes():
+	for node in JoinNodes:
+		node.visible = false
+
+func showJoinNodes():
+	for node in JoinNodes:
+		node.visible = true
+
+func saveName(nameInput:String) -> void:
+
+	PlayerName = nameInput
+
+	var file = FileAccess.open(filePath, FileAccess.WRITE)
+
+	file.store_string(PlayerName)
+
+	file.close()
+
 
 func ValidateIp(ipAddress:String) -> bool:
 	

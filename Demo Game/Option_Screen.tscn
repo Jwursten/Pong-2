@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://bwel4eg5eiarc"]
 
 [ext_resource type="Texture2D" uid="uid://7hctx4wofooa" path="res://Assets/Assets/Options-1-29-2024.png" id="1_k6s8g"]
-[ext_resource type="Script" path="res://MusicVolume.gd" id="2_kesdu"]
+[ext_resource type="Script" path="res://Scripts/MusicVolume.gd" id="2_kesdu"]
 [ext_resource type="AudioStream" uid="uid://bn24x440s1ei7" path="res://Assets/Assets/Jeremy Blake - Powerup!.mp3" id="3_m14gc"]
 [ext_resource type="Texture2D" uid="uid://dw3xkvx5nj3ln" path="res://Assets/Assets/Music-1-31-2024.png" id="4_ojshb"]
 [ext_resource type="Texture2D" uid="uid://3ec1mrofy676" path="res://Assets/Assets/Effects-1-31-2024.png" id="5_iw620"]
 [ext_resource type="Script" path="res://SFXVolume.gd" id="6_46ujl"]
 [ext_resource type="Texture2D" uid="uid://b0s2pqfhfrmwn" path="res://Assets/Assets/Back-1-31-2024.png" id="7_ohkbp"]
-[ext_resource type="Script" path="res://BackButton.gd" id="8_gagjq"]
+[ext_resource type="Script" path="res://Scripts/BackButton.gd" id="8_gagjq"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

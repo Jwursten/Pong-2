@@ -1,5 +1,50 @@
 extends Node
 
+var PlayerList = []
+
+@export var Player1Scene : PackedScene
+@export var Player2Scene : PackedScene
+@export var Player3Scene : PackedScene
+@export var Player4Scene : PackedScene
+
+var PlayerScenes = [
+	Player1Scene,
+	Player2Scene,
+	Player3Scene,
+	Player4Scene
+]
+
+func _ready():
+
+	Player1Scene = get_scen
+
+	var index = 0
+	for i in GameManager.Players:
+		var currentPlayer = PlayerScenes[index].instantiate()
+		add_child(currentPlayer)
+		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
+			if spawn.name == index:
+				currentPlayer.global_position = spawn.global_position
+
+
+		index += 1;
+
+func AddPlayer(id) -> bool:
+	if PlayerList.len < 4:
+		PlayerList.append(id)
+		return true
+	else:
+		return false
+
+func GetPlayerList() -> ItemList:
+	return PlayerList
+
+func RemovePlayerByIndex(index: int):
+	var output = PlayerList[index]
+	PlayerList.remove_at(index)
+	return output
+
+
 var PlayerOneScore = 0
 var PlayerTwoScore = 0
 var PlayerThreeScore = 0
@@ -13,6 +58,9 @@ func goal_scored():
 	$PointLoss.play()
 
 func _ready():
+
+	# we need to spawn in players instead of useing object existing in the scene.
+
 	$GameTime.start()
 	
 func _on_left_goal_body_entered(_body):

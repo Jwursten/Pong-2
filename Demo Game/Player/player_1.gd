@@ -3,6 +3,8 @@ extends CharacterBody2D
 const SPEED = 400.0
 var highest_y = 175
 
+var upKey = KEY_W
+
 func _physics_process(_delta):
 	var direction
 	# detect player input
