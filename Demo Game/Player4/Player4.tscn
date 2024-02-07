@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dojjhtfmxuwcb"]
+[gd_scene load_steps=5 format=3 uid="uid://dojjhtfmxuwcb"]
 
 [ext_resource type="Script" path="res://Player4/Player4.gd" id="1_01igp"]
 [ext_resource type="Texture2D" uid="uid://da5x38o6kk2io" path="res://Assets/Assets/PaddleRed.png" id="2_0pfe5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpnks"]
 size = Vector2(31, 121)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2kvha"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(406, 75)
@@ -18,3 +23,6 @@ shape = SubResource("RectangleShape2D_jpnks")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_0pfe5")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_2kvha")

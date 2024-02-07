@@ -2,6 +2,10 @@ extends Node
 
 var Players = {}
 
+var NameKey = "name"
+var ScoreKey = "score"
+var IDKey = "id"
+
 
 
 
@@ -11,5 +15,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass

@@ -23,8 +23,13 @@ var ConnectButtonNode
 var PlayerNameInputNode
 
 var ConnectedLabelNode
+var JoinButtonNode
 var HostButtonNode
 var StartButtonNode
+
+var PlayersJoined = false
+
+var PlayerListNode
 
 
 # Called when the node enters the scene tree for the first time.
@@ -44,22 +49,30 @@ func _ready():
 
 	hideJoinNodes()
 
-	# get the name 
-	var file = FileAccess.open(filePath, FileAccess.READ)
-
-	PlayerName = file.get_as_text()
-
-	file.close()
-
 	PlayerNameInputNode = get_node("%NameInput")
 
-	PlayerNameInputNode.text = PlayerName
+	# get the name 
+	
+
+	if (FileAccess.file_exists(filePath)):
+		var file = FileAccess.open(filePath, FileAccess.READ)
+		PlayerName = file.get_as_text()
+
+		file.close()
+
+		if (PlayerName != null):
+			PlayerNameInputNode.text = PlayerName
 
 	ConnectedLabelNode = get_node("ConnectedLabel")
 	ConnectedLabelNode.visible = false
 
 	HostButtonNode = get_node("HostButton")
 	StartButtonNode = get_node("StartButton")
+	JoinButtonNode = get_node("JoinButton")
+
+	StartButtonNode.visible = false
+
+	PlayerListNode = get_node("PlayersLabel")
 	
 
 
@@ -69,40 +82,56 @@ func _ready():
 
 # called on client and server
 func PlayerConnected(id):
-	PrintToUser("Player #" + str(id) + " Connected.")
+	DebugPrint("PlayerConnected: Player ID " + str(id) + " Connected.")
+
+	print()
+	PlayersJoined = true
 
 # callend on client and server
 func PlayerDisconnected(id):
-	PrintToUser("Player #" + str(id) + " Disconnected.")
+	DebugPrint("PlayerDisconnected: Player ID " + str(id) + " Disconnected.")
+	UpdatePlayerList()
 
 # called only on client
 func ConnectedToServer():
-	PrintToUser("Connected to Server")
+	DebugPrint("ConnectedToServer: Connected to Server")
 
 	HostButtonNode.visible = false
 	ConnectedLabelNode.visible = true
 
-	SendPlayerInfo.rpc_id(1, name, multiplayer.get_unique_id())
+	DebugPrint("ConnectedToServer: Id: " + str(multiplayer.get_unique_id()) + " Name: " + PlayerName)
+
+	SendPlayerInfo.rpc_id(1, multiplayer.get_unique_id(), PlayerName)
+
+	DebugPrint("ConnectedToServer: Attempting to update Player List")
+	UpdatePlayerList.rpc_id(1)
 
 # called only on client
 func ConnectionFailed():
-	PrintToUser("Failed Connection")
+	DebugPrint("ConnectionFailed: Failed Connection")
 
 
 # ==== RPC functions ====
 
 @rpc("any_peer")
 func SendPlayerInfo(id, nameInput):
+	id = str(id)
 	if !GameManager.Players.has(id):
+		DebugPrint("SendPlayerInfo: [Id: " + id + " Name: " + nameInput + "]", 1)
+		DebugPrint("SendPlayerInfo: [GameManager.Players Before: " + str(GameManager.Players) + "]", 1)
 		GameManager.Players[id] = {
-			"name": nameInput,
-			"id": id,
-			"score": 0
+			GameManager.NameKey: nameInput,
+			GameManager.IDKey: id,
+			GameManager.ScoreKey: 0
 		}
+
+		DebugPrint("SendPlayerInfo: [GameManager.Players After: " + str(GameManager.Players) + "]", 1)
 	
 	if multiplayer.is_server():
 		for i in GameManager.Players:
-			SendPlayerInfo.rpc(GameManager.Players[i].name, i)
+			SendPlayerInfo.rpc(GameManager.Players[i][GameManager.NameKey], i)
+	
+	print("")
 
 
 @rpc("any_peer", "call_local")
@@ -112,20 +141,42 @@ func StartGame():
 	get_tree().root.add_child(gameScene)
 
 	self.hide()
+
+@rpc("any_peer", "call_local")
+func UpdatePlayerList():
+	if (multiplayer.is_server() == true):
+		var output = "Players:\n"
+		
+		DebugPrint("UpdatePlayerList:[GameManager.Players: " + str(GameManager.Players) + "]", 1)
+
+		for player in GameManager.Players:
+			output = (
+				output + str(GameManager.Players[player][GameManager.NameKey]) + " - " 
+				+ str(GameManager.Players[player][GameManager.IDKey]) + "\n"
+			)
+		
+		PlayerListNode.text = output
+		DebugPrint("UpdatePlayerList: Player List Updated", 1)
 		
 # ==== Button Listeners ====
 
 func _on_start_button_pressed():
-	StartGame.rpc()
+	if (StartButtonNode.visible == true):
+		DebugPrint("Starting Game")
+		StartGame.rpc()
 
 
 func _on_join_button_pressed():
-	showJoinNodes()
+	if JoinButtonNode.visible == true:
+		showJoinNodes()
+		HostButtonNode.visible = false
+		StartButtonNode.visible = false
 
 
 func _on_host_button_pressed():
-
 	if HostButtonNode.visible == true:
+
+		JoinButtonNode.visible = false
 
 		hideJoinNodes()
 		peer = ENetMultiplayerPeer.new()
@@ -138,22 +189,38 @@ func _on_host_button_pressed():
 		peer.get_host().compress(Compresstion)
 
 		multiplayer.set_multiplayer_peer(peer)
-		SendPlayerInfo(name, multiplayer.get_unique_id())
-		PrintToUser("Waiting for Players")
+		SendPlayerInfo(multiplayer.get_unique_id(), PlayerName)
+		UpdatePlayerList()
+		
+		DebugPrint("Server Started.")
+		DebugPrint("Waiting for Players...")
+
+		StartButtonNode.visible = true
 
 func _on_connect_pressed():
 
 	Address = IpInputNode.text
 
+	if (Address == ""):
+		Address = "localhost"
+
 	if(ValidateIp(Address) == true):
-		peer = ENetConnection.new()
-		peer.create_cliant(Address, port)
+		peer = ENetMultiplayerPeer.new()
+		peer.create_client(Address, port)
 		peer.get_host().compress(Compresstion)
-		multiplayer.set_multyplay_peer(peer)
+		multiplayer.set_multiplayer_peer(peer)
 
 
 
 # ==== Utilities ====
+
+func DebugPrint(msg:String, tabLayer:int = 0):
+
+	var tabStr = ""
+	for i in range(tabLayer):
+		tabStr = tabStr + ">  "
+
+	print(tabStr + str(multiplayer.get_unique_id()) + ": " + msg)
 
 func hideJoinNodes():
 	for node in JoinNodes:
@@ -175,7 +242,7 @@ func saveName(nameInput:String) -> void:
 
 
 func ValidateIp(ipAddress:String) -> bool:
-	
+
 	if (ipAddress == "localhost"):
 		return true
 
@@ -186,12 +253,12 @@ func ValidateIp(ipAddress:String) -> bool:
 	for octet in splitAddress:
 		if (octet.length() == 0 or octet.length() > 3):
 			PrintToUser("Each octet of the Ip address must be between 1 and 3 digits." +
-			" (see octet " + counter + ")")
+			" (see octet " + str(counter) + ")")
 			return false
 		
 		elif (int(octet) < 0):
 			PrintToUser("each octet of the Ip Address must be greater than 0" +
-			" (see octet " + counter + ")")
+			" (see octet " + str(counter) + ")")
 			return false
 		
 		elif (int(octet) > 255):
@@ -217,11 +284,8 @@ func _on_name_input_text_changed(new_text:String):
 func _on_name_input_focus_exited():
 	saveName(PlayerNameInputNode.text)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var output = "[b]Players:[\b]\n"
-
-	for player in GameManager.Players:
-		output = output + player["name"] + " - " + player["id"] + "\n"
+func _process(_delta):
+	pass
+	
 	

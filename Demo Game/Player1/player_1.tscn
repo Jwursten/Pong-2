@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://box4qfmp1mwhd"]
+[gd_scene load_steps=5 format=3 uid="uid://box4qfmp1mwhd"]
 
-[ext_resource type="Script" path="res://Player/player_1.gd" id="1_f3ef7"]
+[ext_resource type="Script" path="res://Player1/player_1.gd" id="1_f3ef7"]
 [ext_resource type="Texture2D" uid="uid://beqfb11b3yg4s" path="res://Assets/Assets/PaddlePurple.png" id="2_8v2xa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_50kj1"]
 size = Vector2(30.5, 120)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rm5k7"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Player1" type="CharacterBody2D"]
 position = Vector2(30, 360)
@@ -17,3 +22,6 @@ shape = SubResource("RectangleShape2D_50kj1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8v2xa")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rm5k7")
