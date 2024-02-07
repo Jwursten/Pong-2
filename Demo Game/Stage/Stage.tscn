@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://ch4q32k7uycd7"]
 
 [ext_resource type="Script" path="res://Stage/Stage.gd" id="1_oe0k2"]
-[ext_resource type="PackedScene" uid="uid://box4qfmp1mwhd" path="res://Player/player_1.tscn" id="1_vkcv5"]
+[ext_resource type="PackedScene" uid="uid://box4qfmp1mwhd" path="res://Player1/player_1.tscn" id="1_vkcv5"]
 [ext_resource type="Texture2D" uid="uid://d046b3vbprqky" path="res://Assets/Assets/Pink_Square.png" id="2_e632i"]
-[ext_resource type="PackedScene" uid="uid://btqqyktcrmdar" path="res://Opponent/opponent.tscn" id="2_p04be"]
+[ext_resource type="PackedScene" uid="uid://btqqyktcrmdar" path="res://Player2/opponent.tscn" id="2_p04be"]
 [ext_resource type="PackedScene" uid="uid://d3bnbau462n6" path="res://Ball/ball.tscn" id="3_poq0d"]
 [ext_resource type="PackedScene" uid="uid://chudnf1cqb5un" path="res://Player3/Player3.tscn" id="5_pexpm"]
 [ext_resource type="PackedScene" uid="uid://dojjhtfmxuwcb" path="res://Player4/Player4.tscn" id="6_8g8be"]

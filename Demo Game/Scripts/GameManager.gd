@@ -2,6 +2,10 @@ extends Node
 
 var Players = {}
 
+var NameKey = "name"
+var ScoreKey = "score"
+var IDKey = "id"
+
 
 
 

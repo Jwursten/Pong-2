@@ -13,17 +13,31 @@ var PlayerScenes = [
 	Player3Scene,
 	Player4Scene
 ]
-
+ 
 
 func _ready():
+	DebugPrint("_ready: Preping")
 
 	var index = 0
-	for i in GameManager.Players:
-		var currentPlayer = PlayerScenes[index].instantiate()
-		add_child(currentPlayer)
-		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
-			if spawn.name == str(index):
-				currentPlayer.global_position = spawn.global_position
+	
+	while (index < 4):
+
+		var currentPlayerScene = PlayerScenes[index]
+		DebugPrint("_ready: [" + str(index) + "]: " + str(currentPlayerScene))
+		var currentPlayerInstance = currentPlayerScene.instantiate()
+
+		DebugPrint("_ready: [" + str(index) + "]:  got current player scene")
+
+		if (index >= GameManager.Players.size()):
+			pass # We need to add code here to add walls if not enouph players.
+		else:
+			currentPlayerInstance.name = str(GameManager.Players[index].id)
+			add_child(currentPlayerInstance)
+			for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
+				if spawn.name == str(index):
+					currentPlayerInstance.global_position = spawn.global_position
+		
+		DebugPrint("_ready: [" + str(index) + "] Player assigned.")
 
 
 		index += 1;
@@ -106,3 +120,12 @@ func _game_ends():
 
 func _on_game_time_timeout():
 	_game_ends()
+
+
+func DebugPrint(msg:String, tabLayer:int = 0):
+
+	var tabStr = ""
+	for i in range(tabLayer):
+		tabStr = tabStr + ">  "
+
+	print(tabStr + str(multiplayer.get_unique_id()) + ": " + msg)
