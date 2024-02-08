@@ -34,28 +34,34 @@ func _ready():
 	
 	while (index < 4):
 		
-		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes: " +str(PlayerScenes))
+		if (index < PlayerList.size()):
+			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes: " +str(PlayerScenes), 0, true)
 
-		var currentPlayerScene = PlayerScenes[index]
-		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes[index]: " +str(PlayerScenes[index]))
-		var currentPlayerInstance = currentPlayerScene.instantiate()
+			var currentPlayerScene = PlayerScenes[index]
+			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes[index]: " +str(PlayerScenes[index], 0, true))
+			var currentPlayerInstance = currentPlayerScene.instantiate()
 
-		currentPlayerInstance.name = PlayerList[index][GameManager.IDKey]
+			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerList: " + str(PlayerList), 0, true)
+			currentPlayerInstance.name = PlayerList[index][GameManager.IDKey]
 
-		DebugPrint("_ready: [" + str(index) + "]:  got current player scene", 0, true)
+			DebugPrint("_ready: [" + str(index) + "]:  got current player scene", 0, true)
 
-		if (index >= PlayerList.size()):
-			pass # We need to add code here to add walls if not enouph players.
-		else:
-			DebugPrint("_ready: [" + str(index) + "]: PlayerList" + str(PlayerList), 0, true)
+			if (index >= PlayerList.size()):
+				pass # We need to add code here to add walls if not enouph players.
+			else:
+				DebugPrint("_ready: [" + str(index) + "]: PlayerList" + str(PlayerList), 0, true)
 
-			currentPlayerInstance.name = str(PlayerList[index][GameManager.IDKey])
-			add_child(currentPlayerInstance)
-			for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
-				if spawn.name == str(index):
-					currentPlayerInstance.global_position = spawn.global_position
+				currentPlayerInstance.name = str(PlayerList[index][GameManager.IDKey])
+				add_child(currentPlayerInstance)
+				for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
+					if spawn.name == str(index):
+						currentPlayerInstance.global_position = spawn.global_position
+			
+			DebugPrint("_ready: [" + str(index) + "] Player assigned.", 0, true)
 		
-		DebugPrint("_ready: [" + str(index) + "] Player assigned.", 0, true)
+		else:
+			DebugPrint("_ready: [" + str(index) + "]: " + "Insufishent Players.")
+			pass # we should put somthing here. spawn a wall?
 
 
 		index += 1;
