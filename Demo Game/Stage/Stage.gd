@@ -15,8 +15,8 @@ func _ready():
 
 	Player1Scene = load("res://Player1/player_1.tscn")
 	Player2Scene = load("res://Player2/opponent.tscn")
-	Player3Scene = load("res://Player3/player3.tscn")
-	Player4Scene = load("res://Player4/player4.tscn")
+	Player3Scene = load("res://Player3/Player3.tscn")
+	Player4Scene = load("res://Player4/Player4.tscn")
 
 	PlayerScenes = [
 		Player1Scene,
@@ -25,7 +25,7 @@ func _ready():
 		Player4Scene,
 	]
 
-	PlayerList
+	# PlayerList
 
 	for i in GameManager.Players:
 		PlayerList.append(GameManager.Players[i])
