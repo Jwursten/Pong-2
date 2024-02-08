@@ -1,12 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ch4q32k7uycd7"]
+[gd_scene load_steps=9 format=3 uid="uid://ch4q32k7uycd7"]
 
 [ext_resource type="Script" path="res://Stage/Stage.gd" id="1_oe0k2"]
-[ext_resource type="PackedScene" uid="uid://box4qfmp1mwhd" path="res://Player1/player_1.tscn" id="1_vkcv5"]
 [ext_resource type="Texture2D" uid="uid://d046b3vbprqky" path="res://Assets/Assets/Pink_Square.png" id="2_e632i"]
-[ext_resource type="PackedScene" uid="uid://btqqyktcrmdar" path="res://Player2/opponent.tscn" id="2_p04be"]
 [ext_resource type="PackedScene" uid="uid://d3bnbau462n6" path="res://Ball/ball.tscn" id="3_poq0d"]
-[ext_resource type="PackedScene" uid="uid://chudnf1cqb5un" path="res://Player3/Player3.tscn" id="5_pexpm"]
-[ext_resource type="PackedScene" uid="uid://dojjhtfmxuwcb" path="res://Player4/Player4.tscn" id="6_8g8be"]
 [ext_resource type="AudioStream" uid="uid://cl1usgjf5x81k" path="res://Assets/Assets/ping_pong_8bit_beeep.ogg" id="8_rgs6c"]
 [ext_resource type="AudioStream" uid="uid://b5pdoecvaskv5" path="res://Assets/Assets/AdhesiveWombat - Night Shade.mp3" id="9_als0k"]
 
@@ -23,10 +19,6 @@ properties/0/replication_mode = 1
 
 [node name="Stage" type="Node"]
 script = ExtResource("1_oe0k2")
-Player1Scene = ExtResource("1_vkcv5")
-Player2Scene = ExtResource("2_p04be")
-Player3Scene = ExtResource("5_pexpm")
-Player4Scene = ExtResource("6_8g8be")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
