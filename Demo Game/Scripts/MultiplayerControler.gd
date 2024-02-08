@@ -1,5 +1,5 @@
 extends Node2D
-
+#"res://Player3/Player3.tscn"
 var PlayerName = ""
 
 var JoinNodes = []

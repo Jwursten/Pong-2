@@ -2,45 +2,62 @@ extends Node
 
 var PlayerList = []
 
-@export var Player1Scene : PackedScene
-@export var Player2Scene : PackedScene
-@export var Player3Scene : PackedScene
-@export var Player4Scene : PackedScene
+var Player1Scene 
+var Player2Scene 
+var Player3Scene 
+var Player4Scene 
 
-var PlayerScenes = [
-	Player1Scene,
-	Player2Scene,
-	Player3Scene,
-	Player4Scene
-]
+var PlayerScenes = []
  
 
 func _ready():
-	DebugPrint("_ready: Preping")
+	DebugPrint("_ready: Preping", 0, true)
+
+	Player1Scene = load("res://Player1/player_1.tscn")
+	Player2Scene = load("res://Player2/opponent.tscn")
+	Player3Scene = load("res://Player3/player3.tscn")
+	Player4Scene = load("res://Player4/player4.tscn")
+
+	PlayerScenes = [
+		Player1Scene,
+		Player2Scene,
+		Player3Scene,
+		Player4Scene,
+	]
+
+	PlayerList
+
+	for i in GameManager.Players:
+		PlayerList.append(GameManager.Players[i])
 
 	var index = 0
 	
 	while (index < 4):
+		
+		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes: " +str(PlayerScenes))
 
 		var currentPlayerScene = PlayerScenes[index]
-		DebugPrint("_ready: [" + str(index) + "]: " + str(currentPlayerScene))
+		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes[index]: " +str(PlayerScenes[index]))
 		var currentPlayerInstance = currentPlayerScene.instantiate()
 
-		DebugPrint("_ready: [" + str(index) + "]:  got current player scene")
+		DebugPrint("_ready: [" + str(index) + "]:  got current player scene", 0, true)
 
-		if (index >= GameManager.Players.size()):
+		if (index >= PlayerList.size()):
 			pass # We need to add code here to add walls if not enouph players.
 		else:
-			currentPlayerInstance.name = str(GameManager.Players[index].id)
+			DebugPrint("_ready: [" + str(index) + "]: PlayerList" + str(PlayerList), 0, true)
+
+			currentPlayerInstance.name = str(PlayerList[index][GameManager.IDKey])
 			add_child(currentPlayerInstance)
 			for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
 				if spawn.name == str(index):
 					currentPlayerInstance.global_position = spawn.global_position
 		
-		DebugPrint("_ready: [" + str(index) + "] Player assigned.")
+		DebugPrint("_ready: [" + str(index) + "] Player assigned.", 0, true)
 
 
 		index += 1;
+		DebugPrint("", 0, true)
 	# we need to spawn in players instead of useing object existing in the scene.
 
 	$GameTime.start()
@@ -122,10 +139,11 @@ func _on_game_time_timeout():
 	_game_ends()
 
 
-func DebugPrint(msg:String, tabLayer:int = 0):
+func DebugPrint(msg:String, tabLayer:int = 0, serverOnly:bool = false):
 
-	var tabStr = ""
-	for i in range(tabLayer):
-		tabStr = tabStr + ">  "
+	if (serverOnly == false or (serverOnly == true and multiplayer.is_server() == true)):
+		var tabStr = ""
+		for i in range(tabLayer):
+			tabStr = tabStr + ">  "
 
-	print(tabStr + str(multiplayer.get_unique_id()) + ": " + msg)
+		print(tabStr + str(multiplayer.get_unique_id()) + ": " + msg)
