@@ -6,7 +6,7 @@ var maxLeft_x = 175
 var maxRight_x = 725
 
 func _physics_process(_delta):
-	if (get_parent().get_node("MultiplayerSynchronizer").get_multiplayer_authority() == multiplayer.get_unique_id()):
+	if (get_node("%MultiplayerSynchronizer4").get_multiplayer_authority() == multiplayer.get_unique_id()):
 		var direction
 		if Input.is_key_pressed(KEY_N) and position.x >= maxLeft_x:
 			direction = -1
