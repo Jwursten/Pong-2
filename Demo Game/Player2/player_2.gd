@@ -5,6 +5,7 @@ var SPEED = 400.0
 var highest_y = 175
 
 func _ready():
+	print(str(multiplayer.get_unique_id()) + ": " + name)
 	get_node("%MultiplayerSynchronizer2").set_multiplayer_authority(str(name).to_int())
 
 func _physics_process(_delta):
