@@ -12,9 +12,9 @@ func _ready():
 func _physics_process(_delta):
 	if (get_node("%MultiplayerSynchronizer4").get_multiplayer_authority() == multiplayer.get_unique_id()):
 		var direction
-		if Input.is_key_pressed(KEY_N) and position.x >= maxLeft_x:
+		if Input.is_key_pressed(KEY_W) and position.x >= maxLeft_x:
 			direction = -1
-		elif Input.is_key_pressed(KEY_M) and position.x <= maxRight_x:
+		elif Input.is_key_pressed(KEY_S) and position.x <= maxRight_x:
 			direction = 1
 		if direction:
 			velocity.x = direction * SPEED
