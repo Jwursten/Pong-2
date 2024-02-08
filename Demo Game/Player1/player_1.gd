@@ -6,7 +6,7 @@ var highest_y = 175
 var upKey = KEY_W
 
 func _ready():
-	print(str(multiplayer.get_unique_id()) + ": " + name)
+	print(str(multiplayer.get_unique_id()) + ": Player1: _ready: name: `" + name + "`")
 	get_node("%MultiplayerSynchronizer1").set_multiplayer_authority(str(name).to_int())
 
 func _physics_process(_delta):

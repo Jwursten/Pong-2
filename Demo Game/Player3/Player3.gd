@@ -6,7 +6,7 @@ var maxLeft_x = 175
 var maxRight_x = 725
 
 func _ready():
-	print(str(multiplayer.get_unique_id()) + ": " + name)
+	print(str(multiplayer.get_unique_id()) + ": Player3: _ready: name: `" + name + "`")
 	get_node("%MultiplayerSynchronizer3").set_multiplayer_authority(str(name).to_int())
 
 func _physics_process(_delta):
