@@ -4,6 +4,9 @@ extends CharacterBody2D
 var SPEED = 400.0
 var highest_y = 175
 
+func _ready():
+	get_node("%MultiplayerSynchronizer1").set_multiplayer_authority(str(name).to_int())
+
 func _physics_process(_delta):
 	if (get_node("%MultiplayerSynchronizer2").get_multiplayer_authority() == multiplayer.get_unique_id()):
 		var direction

@@ -40,6 +40,8 @@ func _ready():
 		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes[index]: " +str(PlayerScenes[index]))
 		var currentPlayerInstance = currentPlayerScene.instantiate()
 
+		currentPlayerInstance.name = PlayerList[index][GameManager.IDKey]
+
 		DebugPrint("_ready: [" + str(index) + "]:  got current player scene", 0, true)
 
 		if (index >= PlayerList.size()):
