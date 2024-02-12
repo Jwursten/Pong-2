@@ -3,7 +3,8 @@ extends CharacterBody2D
 const SPEED = 400.0
 var highest_y = 175
 
-var upKey = KEY_W
+const key_one = KEY_W
+const key_two = KEY_S
 
 func _ready():
 	print(str(multiplayer.get_unique_id()) + ": Player1: _ready: name: `" + name + "`")
@@ -12,10 +13,11 @@ func _ready():
 func _physics_process(_delta):
 	if (get_node("%MultiplayerSynchronizer1").get_multiplayer_authority() == multiplayer.get_unique_id()):
 		var direction
+		
 		# detect player input
-		if Input.is_key_pressed(KEY_W) and position.y >= highest_y:
+		if Input.is_key_pressed(key_one) and position.y >= highest_y:
 			direction = -1
-		elif Input.is_key_pressed(KEY_S):
+		elif Input.is_key_pressed(key_two):
 			direction = 1
 		
 		# convert the player input into a velocity
