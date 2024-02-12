@@ -23,5 +23,6 @@ shape = SubResource("RectangleShape2D_50kj1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8v2xa")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer1" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_rm5k7")

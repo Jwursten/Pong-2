@@ -5,12 +5,16 @@ const SPEED = 400.0
 var maxLeft_x = 175
 var maxRight_x = 725
 
+func _ready():
+	print(str(multiplayer.get_unique_id()) + ": Player4: _ready: name: `" + name + "`")
+	get_node("%MultiplayerSynchronizer4").set_multiplayer_authority(str(name).to_int())
+
 func _physics_process(_delta):
-	if (get_parent().get_node("MultiplayerSynchronizer").get_multiplayer_authority() == multiplayer.get_unique_id()):
+	if (get_node("%MultiplayerSynchronizer4").get_multiplayer_authority() == multiplayer.get_unique_id()):
 		var direction
-		if Input.is_key_pressed(KEY_N) and position.x >= maxLeft_x:
+		if Input.is_key_pressed(KEY_W) and position.x >= maxLeft_x:
 			direction = -1
-		elif Input.is_key_pressed(KEY_M) and position.x <= maxRight_x:
+		elif Input.is_key_pressed(KEY_S) and position.x <= maxRight_x:
 			direction = 1
 		if direction:
 			velocity.x = direction * SPEED

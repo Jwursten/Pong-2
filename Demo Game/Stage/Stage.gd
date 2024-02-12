@@ -1,22 +1,22 @@
 extends Node
 
-var PlayerList = []
-
-var Player1Scene 
-var Player2Scene 
-var Player3Scene 
-var Player4Scene 
+var PlayerList = []                       
+ 
+# I thought this was unessicary we dont call these variables outside of the function ready
+#var Player1Scene 
+#var Player2Scene 
+#var Player3Scene 
+#var Player4Scene 
 
 var PlayerScenes = []
  
-
 func _ready():
 	DebugPrint("_ready: Preping", 0, true)
 
-	Player1Scene = load("res://Player1/player_1.tscn")
-	Player2Scene = load("res://Player2/opponent.tscn")
-	Player3Scene = load("res://Player3/player3.tscn")
-	Player4Scene = load("res://Player4/player4.tscn")
+	var Player1Scene = load("res://Player1/player_1.tscn")
+	var Player2Scene = load("res://Player2/opponent.tscn")
+	var Player3Scene = load("res://Player3/Player3.tscn")
+	var Player4Scene = load("res://Player4/Player4.tscn")
 
 	PlayerScenes = [
 		Player1Scene,
@@ -25,7 +25,7 @@ func _ready():
 		Player4Scene,
 	]
 
-	PlayerList
+	# Add players to PlayerList for the game manager.                                       
 
 	for i in GameManager.Players:
 		PlayerList.append(GameManager.Players[i])
@@ -34,26 +34,35 @@ func _ready():
 	
 	while (index < 4):
 		
-		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes: " +str(PlayerScenes))
-
-		var currentPlayerScene = PlayerScenes[index]
-		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes[index]: " +str(PlayerScenes[index]))
-		var currentPlayerInstance = currentPlayerScene.instantiate()
-
-		DebugPrint("_ready: [" + str(index) + "]:  got current player scene", 0, true)
-
-		if (index >= PlayerList.size()):
-			pass # We need to add code here to add walls if not enouph players.
-		else:
-			DebugPrint("_ready: [" + str(index) + "]: PlayerList" + str(PlayerList), 0, true)
-
-			currentPlayerInstance.name = str(PlayerList[index][GameManager.IDKey])
-			add_child(currentPlayerInstance)
-			for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
-				if spawn.name == str(index):
-					currentPlayerInstance.global_position = spawn.global_position
 		
-		DebugPrint("_ready: [" + str(index) + "] Player assigned.", 0, true)
+		if (index < PlayerList.size()):
+			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes: " +str(PlayerScenes), 0, true)
+
+			var currentPlayerScene = PlayerScenes[index]
+			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes[index]: " +str(PlayerScenes[index], 0, true))
+			var currentPlayerInstance = currentPlayerScene.instantiate()
+
+			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerList: " + str(PlayerList), 0, true)
+			currentPlayerInstance.name = PlayerList[index][GameManager.IDKey]
+
+			DebugPrint("_ready: [" + str(index) + "]:  got current player scene", 0, true)
+
+			if (index >= PlayerList.size()):
+				pass # We need to add code here to add walls if not enouph players.
+			else:
+				DebugPrint("_ready: [" + str(index) + "]: PlayerList" + str(PlayerList), 0, true)
+
+				currentPlayerInstance.name = str(PlayerList[index][GameManager.IDKey])
+				add_child(currentPlayerInstance)
+				for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
+					if spawn.name == str(index):
+						currentPlayerInstance.global_position = spawn.global_position
+			
+			DebugPrint("_ready: [" + str(index) + "] Player assigned.", 0, true)
+		
+		else:
+			DebugPrint("_ready: [" + str(index) + "]: " + "Insufishent Players.")
+			pass # we should put somthing here. spawn a wall?
 
 
 		index += 1;
@@ -61,7 +70,6 @@ func _ready():
 	# we need to spawn in players instead of useing object existing in the scene.
 
 	$GameTime.start()
-	
 
 func AddPlayer(id) -> bool:
 	if PlayerList.len < 4:
@@ -78,7 +86,6 @@ func RemovePlayerByIndex(index: int):
 	PlayerList.remove_at(index)
 	return output
 
-
 var PlayerOneScore = 0
 var PlayerTwoScore = 0
 var PlayerThreeScore = 0
@@ -90,7 +97,6 @@ func goal_scored():
 	$CountDownTimer.start()
 	$BallTimer.visible = true
 	$PointLoss.play()
-
 
 func _on_left_goal_body_entered(_body):
 	PlayerOneScore += 1
@@ -115,12 +121,10 @@ func _process(_delta):
 	$PlayerFourScore.text = str(PlayerFourScore)
 	$BallTimer.text = str(int($CountDownTimer.time_left))
 	$GameTimeLabel.text = str(int($GameTime.time_left))
-	
-	
+
 func _on_count_down_timer_timeout():
 	get_tree().call_group('BallGroup', 'ball_continue')
 	$BallTimer.visible = false
-
 
 func _game_ends():
 	if  int(PlayerOneScore) < int(PlayerTwoScore) and int(PlayerOneScore) < int(PlayerFourScore) and int(PlayerOneScore) < int(PlayerThreeScore):
@@ -134,10 +138,8 @@ func _game_ends():
 	else:
 		pass
 
-
 func _on_game_time_timeout():
 	_game_ends()
-
 
 func DebugPrint(msg:String, tabLayer:int = 0, serverOnly:bool = false):
 
