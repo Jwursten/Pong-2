@@ -35,34 +35,7 @@ func _ready():
 	while (index < 4):
 		
 		
-		if (index < PlayerList.size()):
-			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes: " +str(PlayerScenes), 0, true)
-
-			var currentPlayerScene = PlayerScenes[index]
-			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes[index]: " +str(PlayerScenes[index], 0, true))
-			var currentPlayerInstance = currentPlayerScene.instantiate()
-
-			DebugPrint("_ready: [" + str(index) + "]: " + "PlayerList: " + str(PlayerList), 0, true)
-			currentPlayerInstance.name = PlayerList[index][GameManager.IDKey]
-
-			DebugPrint("_ready: [" + str(index) + "]:  got current player scene", 0, true)
-
-			if (index >= PlayerList.size()):
-				pass # We need to add code here to add walls if not enouph players.
-			else:
-				DebugPrint("_ready: [" + str(index) + "]: PlayerList" + str(PlayerList), 0, true)
-
-				currentPlayerInstance.name = str(PlayerList[index][GameManager.IDKey])
-				add_child(currentPlayerInstance)
-				for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
-					if spawn.name == str(index):
-						currentPlayerInstance.global_position = spawn.global_position
-			
-			DebugPrint("_ready: [" + str(index) + "] Player assigned.", 0, true)
-		
-		else:
-			DebugPrint("_ready: [" + str(index) + "]: " + "Insufishent Players.")
-			pass # we should put somthing here. spawn a wall?
+		SpawnPlayer(index)
 
 
 		index += 1;
@@ -70,6 +43,43 @@ func _ready():
 	# we need to spawn in players instead of useing object existing in the scene.
 
 	$GameTime.start()
+
+func SpawnPlayer(index:int):
+	if (index < PlayerList.size()):
+		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes: " + str(PlayerScenes), 0, true)
+
+		# Get a player paddle scene
+		var currentPlayerScene = PlayerScenes[index]
+		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerScenes[index]: " + str(PlayerScenes[index], 0, true))
+		
+		# create an instance of of that player paddle scene
+		var currentPlayerInstance = currentPlayerScene.instantiate()
+		DebugPrint("_ready: [" + str(index) + "]: " + "PlayerList: " + str(PlayerList), 0, true)
+
+		# set the name of the player paddle instance to the id of the player
+		currentPlayerInstance.name = PlayerList[index][GameManager.IDKey]
+
+		DebugPrint("_ready: [" + str(index) + "]: got current player scene", 0, true)
+		
+		DebugPrint("_ready: [" + str(index) + "]: PlayerList: " + str(PlayerList), 0, true)
+		
+		# set the name of the instance to the id of the player 
+		# this is to the instance knows which player is suposed to control it.
+		currentPlayerInstance.name = str(PlayerList[index][GameManager.IDKey])
+
+		add_child(currentPlayerInstance)
+
+		# get the spawn point that corilates with the index
+		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
+			if spawn.name == str(index):
+				currentPlayerInstance.global_position = spawn.global_position
+		
+		DebugPrint("_ready: [" + str(index) + "] Player assigned.", 0, true)
+	
+	else:
+		DebugPrint("_ready: [" + str(index) + "]: " + "Insufishent Players.")
+		pass # we should put somthing here. spawn a wall?
+
 
 func AddPlayer(id) -> bool:
 	if PlayerList.len < 4:

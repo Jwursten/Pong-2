@@ -10,6 +10,7 @@ properties/0/replication_mode = 1
 
 [node name="MultiplayerSetUp" type="Node2D"]
 script = ExtResource("1_j1j3c")
+Address = "localhost"
 
 [node name="NameInput" type="LineEdit" parent="."]
 unique_name_in_owner = true
