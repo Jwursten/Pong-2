@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bisfbv118yoll"]
+[gd_scene load_steps=10 format=3 uid="uid://bisfbv118yoll"]
 
 [ext_resource type="Script" path="res://Scripts/StartButten.gd" id="1_21mvk"]
 [ext_resource type="Texture2D" uid="uid://cvumlkax58t5y" path="res://Assets/Assets/Start-1-24-2024.png" id="1_ftiva"]
@@ -8,8 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://bn24x440s1ei7" path="res://Assets/Assets/Jeremy Blake - Powerup!.mp3" id="6_8pfpv"]
 [ext_resource type="Texture2D" uid="uid://7hctx4wofooa" path="res://Assets/Assets/Options-1-29-2024.png" id="7_8q4qy"]
 [ext_resource type="Script" path="res://Scripts/OptionsButton.gd" id="8_a30f4"]
+[ext_resource type="PackedScene" uid="uid://ch4q32k7uycd7" path="res://Stage/Stage.tscn" id="9_jows6"]
 
 [node name="Control" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,6 +68,8 @@ offset_bottom = 907.0
 scale = Vector2(0.249293, 0.336461)
 icon = ExtResource("7_8q4qy")
 script = ExtResource("8_a30f4")
+
+[node name="Stage" parent="." instance=ExtResource("9_jows6")]
 
 [connection signal="pressed" from="StartButten" to="StartButten" method="_on_pressed"]
 [connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
