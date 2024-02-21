@@ -5,8 +5,8 @@ const SPEED = 400.0
 var maxLeft_x = 175
 var maxRight_x = 725
 
-func _ready():
-	print(str(multiplayer.get_unique_id()) + ": Player3: _ready: name: `" + name + "`")
+func _enter_tree():
+	print(str(multiplayer.get_unique_id()) + ": Player3: _enter_tree: name: `" + name + "`")
 	get_node("%MultiplayerSynchronizer3").set_multiplayer_authority(str(name).to_int())
 
 func _physics_process(_delta):

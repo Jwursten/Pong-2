@@ -4,8 +4,8 @@ extends CharacterBody2D
 var SPEED = 400.0
 var highest_y = 175
 
-func _ready():
-	print(str(multiplayer.get_unique_id()) + ": Player2: _ready: name: `" + name + "`")
+func _enter_tree():
+	print(str(multiplayer.get_unique_id()) + ": Player2: _enter_tree: name: `" + name + "`")
 	get_node("%MultiplayerSynchronizer2").set_multiplayer_authority(str(name).to_int())
 
 func _physics_process(_delta):
