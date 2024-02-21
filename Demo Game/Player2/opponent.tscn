@@ -22,6 +22,5 @@ shape = SubResource("RectangleShape2D_50kj1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gil4y")
 
-[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
-unique_name_in_owner = true
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_hcoc4")
