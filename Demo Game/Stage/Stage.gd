@@ -15,8 +15,8 @@ func _ready():
 
 	Player1Scene = load("res://Player1/player_1.tscn")
 	Player2Scene = load("res://Player2/opponent.tscn")
-	Player3Scene = load("res://Player3/player3.tscn")
-	Player4Scene = load("res://Player4/player4.tscn")
+	Player3Scene = load("res://Player3/Player3.tscn")
+	Player4Scene = load("res://Player4/Player4.tscn")
 
 	PlayerScenes = [
 		Player1Scene,
@@ -25,10 +25,8 @@ func _ready():
 		Player4Scene,
 	]
 
-	PlayerList
-
-	for i in GameManager.Players:
-		PlayerList.append(GameManager.Players[i])
+	for key in GameManager.Players:
+		PlayerList.append(GameManager.Players[key])
 
 	var index = 0
 	
@@ -124,13 +122,13 @@ func _on_count_down_timer_timeout():
 
 func _game_ends():
 	if  int(PlayerOneScore) < int(PlayerTwoScore) and int(PlayerOneScore) < int(PlayerFourScore) and int(PlayerOneScore) < int(PlayerThreeScore):
-		get_tree().change_scene_to_file("res://player1win.tscn")
+		get_tree().change_scene_to_file("res://PlayerWinScreens/player1win.tscn")
 	elif int(PlayerTwoScore) < int(PlayerOneScore) and int(PlayerTwoScore) < int(PlayerFourScore) and int(PlayerTwoScore) < int(PlayerThreeScore):
-		get_tree().change_scene_to_file("res://player2win.tscn")
+		get_tree().change_scene_to_file("res://PlayerWinScreens/player2win.tscn")
 	elif int(PlayerThreeScore) < int(PlayerOneScore) and int(PlayerThreeScore) < int(PlayerFourScore) and int(PlayerThreeScore) < int(PlayerTwoScore):
-		get_tree().change_scene_to_file("res://player3win.tscn")
+		get_tree().change_scene_to_file("res://PlayerWinScreens/player3win.tscn")
 	elif int(PlayerFourScore) < int(PlayerOneScore) and int(PlayerFourScore) < int(PlayerThreeScore) and int(PlayerFourScore) < int(PlayerTwoScore):
-		get_tree().change_scene_to_file("res://player4win.tscn")
+		get_tree().change_scene_to_file("res://PlayerWinScreens/player4win.tscn")
 	else:
 		pass
 
