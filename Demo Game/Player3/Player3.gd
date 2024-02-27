@@ -10,7 +10,7 @@ func _enter_tree():
 	get_node("%MultiplayerSynchronizer3").set_multiplayer_authority(str(name).to_int())
 
 func _physics_process(_delta):
-	if (get_parent().get_node("MultiplayerSynchronizer").get_multiplayer_authority() == multiplayer.get_unique_id()):
+	if (get_node("%MultiplayerSynchronizer3").get_multiplayer_authority() == multiplayer.get_unique_id()):
 		var direction
 		if Input.is_key_pressed(KEY_X) and position.x >= maxLeft_x:
 			direction = -1
