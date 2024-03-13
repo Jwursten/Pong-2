@@ -1,4 +1,12 @@
-[gd_scene format=3 uid="uid://blrmkdfve45t5"]
+[gd_scene load_steps=8 format=3 uid="uid://blrmkdfve45t5"]
+
+[ext_resource type="Texture2D" uid="uid://bvc2a1w4ues5i" path="res://Assets/Assets/Mode-2-1-2024.png" id="1_5uyr7"]
+[ext_resource type="Texture2D" uid="uid://c5pmmpdjcr1m6" path="res://Assets/Assets/Classic-3-13-2024.png" id="2_xtr6i"]
+[ext_resource type="Script" path="res://mode_select/Classic.gd" id="3_l42cp"]
+[ext_resource type="Texture2D" uid="uid://2io1ccwv0sls" path="res://Assets/Assets/Arcade-2-1-2024.png" id="4_ywcvn"]
+[ext_resource type="Script" path="res://mode_select/Arcade.gd" id="5_57pwy"]
+[ext_resource type="Texture2D" uid="uid://b0s2pqfhfrmwn" path="res://Assets/Assets/Back-1-31-2024.png" id="6_64r3l"]
+[ext_resource type="Script" path="res://mode_select/Back.gd" id="7_c6kpu"]
 
 [node name="Mode_select" type="Control"]
 layout_mode = 3
@@ -18,3 +26,40 @@ grow_vertical = 2
 color = Color(0.0823529, 0.117647, 0.196078, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(455, 133)
+scale = Vector2(0.583146, 0.583146)
+texture = ExtResource("1_5uyr7")
+
+[node name="Classic" type="Button" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 252.0
+offset_right = 1214.0
+offset_bottom = 620.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("2_xtr6i")
+script = ExtResource("3_l42cp")
+
+[node name="Arcade" type="Button" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 451.0
+offset_right = 1214.0
+offset_bottom = 818.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("4_ywcvn")
+script = ExtResource("5_57pwy")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 780.0
+offset_right = 1045.0
+offset_bottom = 1272.0
+scale = Vector2(0.2, 0.2)
+icon = ExtResource("6_64r3l")
+script = ExtResource("7_c6kpu")
+
+[connection signal="pressed" from="Classic" to="Classic" method="_on_pressed"]
+[connection signal="pressed" from="Arcade" to="Arcade" method="_on_pressed"]
+[connection signal="pressed" from="Back" to="Back" method="_on_pressed"]
