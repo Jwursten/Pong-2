@@ -33,6 +33,7 @@ offset_top = 347.0
 offset_right = 1350.0
 offset_bottom = 806.0
 scale = Vector2(0.249706, 0.290976)
+theme_override_colors/font_color = Color(0.984314, 0.776471, 0.172549, 1)
 icon = ExtResource("1_ftiva")
 script = ExtResource("1_21mvk")
 
