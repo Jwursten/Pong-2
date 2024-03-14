@@ -252,9 +252,12 @@ position = Vector2(761, 755)
 [node name="PowerSpawn4" type="Node2D" parent="." groups=["PowerSpawns"]]
 position = Vector2(157, 755)
 
+[node name="PowerTimer" type="Timer" parent="PowerSpawn4"]
+
 [connection signal="body_entered" from="LeftGoal" to="." method="_on_left_goal_body_entered"]
 [connection signal="body_entered" from="RightGoal" to="." method="_on_right_goal_body_entered"]
 [connection signal="body_entered" from="TopGoal" to="." method="_on_top_goal_body_entered"]
 [connection signal="body_entered" from="BottomGoal" to="." method="_on_bottom_goal_body_entered"]
 [connection signal="timeout" from="CountDownTimer" to="." method="_on_count_down_timer_timeout"]
 [connection signal="timeout" from="GameTime" to="." method="_on_game_time_timeout"]
+[connection signal="timeout" from="PowerSpawn4/PowerTimer" to="." method="_on_power_timer_timeout"]
