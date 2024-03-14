@@ -14,6 +14,10 @@ func goal_scored():
 
 func _ready():
 	$GameTime.start()
+
+	var TimeToSpawnPower = 5;
+
+	$PowerTimer.start(TimeToSpawnPower);
 	
 func _on_left_goal_body_entered(_body):
 	PlayerOneScore += 1
@@ -60,3 +64,7 @@ func _game_ends():
 
 func _on_game_time_timeout():
 	_game_ends()
+
+
+func _on_power_timer_timeout():
+	pass # Replace with function body.
