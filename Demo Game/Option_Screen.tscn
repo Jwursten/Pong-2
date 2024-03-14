@@ -33,10 +33,10 @@ texture = ExtResource("1_k6s8g")
 
 [node name="MusicVolume" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 344.0
-offset_top = 391.0
-offset_right = 573.0
-offset_bottom = 407.0
+offset_left = 339.0
+offset_top = 355.0
+offset_right = 568.0
+offset_bottom = 371.0
 max_value = 1.0
 step = 0.05
 script = ExtResource("2_kesdu")
@@ -47,21 +47,21 @@ autoplay = true
 bus = &"Music"
 
 [node name="MusicLogo" type="Sprite2D" parent="."]
-position = Vector2(454, 359)
+position = Vector2(456, 307)
 scale = Vector2(0.181418, 0.253267)
 texture = ExtResource("4_ojshb")
 
 [node name="SFXLogo" type="Sprite2D" parent="."]
-position = Vector2(452, 500)
+position = Vector2(452, 432)
 scale = Vector2(0.171242, 0.327222)
 texture = ExtResource("5_iw620")
 
 [node name="SFXVolume" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 345.0
-offset_top = 548.0
-offset_right = 540.0
-offset_bottom = 564.0
+offset_left = 338.0
+offset_top = 489.0
+offset_right = 533.0
+offset_bottom = 505.0
 scale = Vector2(1.16, 1)
 max_value = 1.0
 step = 0.05
@@ -76,6 +76,11 @@ offset_bottom = 1183.0
 scale = Vector2(0.232512, 0.255767)
 icon = ExtResource("7_ohkbp")
 script = ExtResource("8_gagjq")
+
+[node name="TimerOptions" type="OptionButton" parent="."]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 20.0
 
 [connection signal="value_changed" from="MusicVolume" to="MusicVolume" method="_on_value_changed"]
 [connection signal="value_changed" from="SFXVolume" to="SFXVolume" method="_on_value_changed"]
