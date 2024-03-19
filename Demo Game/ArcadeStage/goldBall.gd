@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-var Speed = 250
+var Speed = 120
 var Velocity = Vector2.ZERO
+
+var PowerFunction;
 
 func round_place(num,places):
 	return (round(num*pow(10,places))/pow(10,places))
@@ -53,4 +55,24 @@ func ball_continue():
 	_ready()
 func end_ball():
 	stop_ball()
-	$ball.visible = false
+
+
+func _on_area_2d_body_entered(body:Node2D):
+	
+	var PlayerList = get_tree().get_nodes_in_group("Players");
+
+	if (PlayerList.has(body)):
+		visible = false
+
+		var rng = RandomNumberGenerator.new();
+		rng.randomize();
+		var targetPower = rng.randi_range(0,1);
+
+		match targetPower:
+			0:
+				print("power0")
+			1:
+				print("power1")
+	
+	pass 
+	

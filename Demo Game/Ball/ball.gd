@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var Speed = 350
+var Speed = 275
 var Velocity = Vector2.ZERO
 
 func round_place(num,places):

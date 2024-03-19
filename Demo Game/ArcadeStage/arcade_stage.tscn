@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck0fllajh8vyu"]
+[gd_scene load_steps=13 format=3 uid="uid://ck0fllajh8vyu"]
 
 [ext_resource type="Script" path="res://ArcadeStage/arcade_stage.gd" id="1_lyb5w"]
 [ext_resource type="PackedScene" uid="uid://box4qfmp1mwhd" path="res://Player/player_1.tscn" id="2_3nt5s"]
+[ext_resource type="PackedScene" uid="uid://d3qbrigkvnk37" path="res://ArcadeStage/goldBall.tscn" id="2_7skop"]
 [ext_resource type="PackedScene" uid="uid://btqqyktcrmdar" path="res://Opponent/opponent.tscn" id="3_ott5g"]
 [ext_resource type="PackedScene" uid="uid://d3bnbau462n6" path="res://Ball/ball.tscn" id="4_fydsi"]
 [ext_resource type="PackedScene" uid="uid://chudnf1cqb5un" path="res://Player3/Player3.tscn" id="5_oj72h"]
@@ -18,6 +19,7 @@ size = Vector2(166, 635)
 
 [node name="ArcadeStage" type="Node"]
 script = ExtResource("1_lyb5w")
+PowerBallScene = ExtResource("2_7skop")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -123,11 +125,11 @@ text = "BallTime"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Player1" parent="." instance=ExtResource("2_3nt5s")]
+[node name="Player1" parent="." groups=["Players"] instance=ExtResource("2_3nt5s")]
 position = Vector2(30, 450)
 scale = Vector2(0.5, 0.5)
 
-[node name="player2" parent="." instance=ExtResource("3_ott5g")]
+[node name="player2" parent="." groups=["Players"] instance=ExtResource("3_ott5g")]
 position = Vector2(870, 450)
 scale = Vector2(0.5, 0.5)
 
@@ -135,11 +137,11 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(450, 450)
 scale = Vector2(0.5, 0.5)
 
-[node name="Player4" parent="." instance=ExtResource("5_oj72h")]
+[node name="Player4" parent="." groups=["Players"] instance=ExtResource("5_oj72h")]
 position = Vector2(450, 30)
 scale = Vector2(0.5, 0.5)
 
-[node name="Player3" parent="." instance=ExtResource("6_4dvlu")]
+[node name="Player3" parent="." groups=["Players"] instance=ExtResource("6_4dvlu")]
 position = Vector2(450, 870)
 scale = Vector2(0.5, 0.5)
 
@@ -241,18 +243,18 @@ autoplay = true
 wait_time = 60.0
 
 [node name="PowerSpawn1" type="Node2D" parent="." groups=["PowerSpawns"]]
-position = Vector2(112, 138)
+position = Vector2(442, 491)
 
 [node name="PowerSpawn2" type="Node2D" parent="." groups=["PowerSpawns"]]
-position = Vector2(761, 138)
+position = Vector2(450, 491)
 
 [node name="PowerSpawn3" type="Node2D" parent="." groups=["PowerSpawns"]]
-position = Vector2(761, 755)
+position = Vector2(450, 491)
 
 [node name="PowerSpawn4" type="Node2D" parent="." groups=["PowerSpawns"]]
-position = Vector2(157, 755)
+position = Vector2(442, 491)
 
-[node name="PowerTimer" type="Timer" parent="PowerSpawn4"]
+[node name="PowerTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="LeftGoal" to="." method="_on_left_goal_body_entered"]
 [connection signal="body_entered" from="RightGoal" to="." method="_on_right_goal_body_entered"]
@@ -260,4 +262,4 @@ position = Vector2(157, 755)
 [connection signal="body_entered" from="BottomGoal" to="." method="_on_bottom_goal_body_entered"]
 [connection signal="timeout" from="CountDownTimer" to="." method="_on_count_down_timer_timeout"]
 [connection signal="timeout" from="GameTime" to="." method="_on_game_time_timeout"]
-[connection signal="timeout" from="PowerSpawn4/PowerTimer" to="." method="_on_power_timer_timeout"]
+[connection signal="timeout" from="PowerTimer" to="." method="_on_power_timer_timeout"]

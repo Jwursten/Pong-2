@@ -5,6 +5,10 @@ var PlayerTwoScore = 0
 var PlayerThreeScore = 0
 var PlayerFourScore = 0
 
+@export var PowerBallScene: PackedScene
+
+var TimeToSpawnPower = 10;
+
 func goal_scored():
 	$Ball.position = Vector2(450, 450)
 	get_tree().call_group('BallGroup', 'stop_ball')
@@ -15,24 +19,40 @@ func goal_scored():
 func _ready():
 	$GameTime.start()
 
-	var TimeToSpawnPower = 5;
+	resetPowerTimer()
 
-	$PowerTimer.start(TimeToSpawnPower);
 	
+
+func resetPowerTimer():
+	$PowerTimer.start(TimeToSpawnPower);
+
+
 func _on_left_goal_body_entered(_body):
-	PlayerOneScore += 1
+	if (_body.name == "Ball"):
+		PlayerOneScore += 1
+	else:
+		PlayerOneScore += 2
 	goal_scored()
 
 func _on_right_goal_body_entered(_body):
-	PlayerTwoScore += 1
+	if (_body.name == "Ball"):
+		PlayerTwoScore += 1
+	else:
+		PlayerTwoScore += 2
 	goal_scored()
 
 func _on_top_goal_body_entered(_body):
-	PlayerFourScore += 1
+	if (_body.name == "Ball"):
+		PlayerFourScore += 1
+	else:
+		PlayerFourScore += 2
 	goal_scored()
 
 func _on_bottom_goal_body_entered(_body):
-	PlayerThreeScore += 1
+	if (_body.name == "Ball"):
+		PlayerThreeScore += 1
+	else:
+		PlayerThreeScore += 2
 	goal_scored()
 
 func _process(_delta):
@@ -67,4 +87,16 @@ func _on_game_time_timeout():
 
 
 func _on_power_timer_timeout():
-	pass # Replace with function body.
+	var PowerSpawns = get_tree().get_nodes_in_group("PowerSpawns");
+
+	var TargetPowerSpawn = PowerSpawns.pick_random();
+
+	var PowerBallInstance = PowerBallScene.instantiate()
+
+	get_parent().add_child(PowerBallInstance)
+
+	PowerBallInstance.position = TargetPowerSpawn.position
+
+	resetPowerTimer()
+
+
