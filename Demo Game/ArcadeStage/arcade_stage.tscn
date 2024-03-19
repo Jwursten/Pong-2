@@ -31,7 +31,10 @@ color = Color(0.0823529, 0.117647, 0.196078, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -300.0
+offset_left = 190.0
+offset_top = 480.0
+offset_right = -536.0
+offset_bottom = -353.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.639216, 0.286275, 0.643137, 1)
@@ -44,7 +47,10 @@ vertical_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 300.0
+offset_left = 583.0
+offset_top = 480.0
+offset_right = -178.0
+offset_bottom = -338.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0.635294, 0.909804, 1)
@@ -57,7 +63,10 @@ vertical_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 300.0
+offset_left = 368.0
+offset_top = 568.0
+offset_right = -372.0
+offset_bottom = -266.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.92549, 0.109804, 0.141176, 1)
@@ -70,7 +79,10 @@ vertical_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -300.0
+offset_left = 368.0
+offset_top = 341.0
+offset_right = -354.0
+offset_bottom = -486.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.407843, 0.901961, 0.105882, 1)
@@ -83,10 +95,10 @@ vertical_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = -83.0
-offset_right = 2.0
-offset_bottom = -83.0
+offset_left = 368.0
+offset_top = 403.0
+offset_right = -368.0
+offset_bottom = -409.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.858824, 0.352941, 0.631373, 1)
@@ -132,6 +144,7 @@ position = Vector2(450, 870)
 scale = Vector2(0.5, 0.5)
 
 [node name="TopLeftCorner" type="StaticBody2D" parent="."]
+position = Vector2(2, 0)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopLeftCorner"]
@@ -227,9 +240,24 @@ autoplay = true
 [node name="GameTime" type="Timer" parent="."]
 wait_time = 60.0
 
+[node name="PowerSpawn1" type="Node2D" parent="." groups=["PowerSpawns"]]
+position = Vector2(112, 138)
+
+[node name="PowerSpawn2" type="Node2D" parent="." groups=["PowerSpawns"]]
+position = Vector2(761, 138)
+
+[node name="PowerSpawn3" type="Node2D" parent="." groups=["PowerSpawns"]]
+position = Vector2(761, 755)
+
+[node name="PowerSpawn4" type="Node2D" parent="." groups=["PowerSpawns"]]
+position = Vector2(157, 755)
+
+[node name="PowerTimer" type="Timer" parent="PowerSpawn4"]
+
 [connection signal="body_entered" from="LeftGoal" to="." method="_on_left_goal_body_entered"]
 [connection signal="body_entered" from="RightGoal" to="." method="_on_right_goal_body_entered"]
 [connection signal="body_entered" from="TopGoal" to="." method="_on_top_goal_body_entered"]
 [connection signal="body_entered" from="BottomGoal" to="." method="_on_bottom_goal_body_entered"]
 [connection signal="timeout" from="CountDownTimer" to="." method="_on_count_down_timer_timeout"]
 [connection signal="timeout" from="GameTime" to="." method="_on_game_time_timeout"]
+[connection signal="timeout" from="PowerSpawn4/PowerTimer" to="." method="_on_power_timer_timeout"]
