@@ -10,10 +10,7 @@ func _ready():
 	add_item("240 secs")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_item_selected(index):
+	if _on_item_selected(index) == 0:
+		pass
 	pass # Replace with function body.
