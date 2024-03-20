@@ -5,6 +5,8 @@ var PlayerTwoScore = 0
 var PlayerThreeScore = 0
 var PlayerFourScore = 0
 
+const ballSpeed = 225
+
 @export var PowerBallScene: PackedScene
 
 var TimeToSpawnPower = 10;
@@ -65,7 +67,17 @@ func _process(_delta):
 	
 	
 func _on_count_down_timer_timeout():
-	get_tree().call_group('BallGroup', 'ball_continue')
+	var balls = get_tree().get_nodes_in_group("BallGroup")
+
+	if(balls.size() != 1):
+		print("WARNING: ball group dosnt have 1 object, it has " + str(balls.size()))
+
+	var ball = balls[0]
+
+	ball.StartSpeed = ballSpeed
+
+	ball.ball_continue()
+
 	$BallTimer.visible = false
 
 

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 400.0
+var SPEED = 400.0
 var maxLeft_x = 175
 var maxRight_x = 725
 

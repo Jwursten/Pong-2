@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-var Speed = 275
+var StartSpeed = 350
+
+var Speed = 350
 var Velocity = Vector2.ZERO
 
 func round_place(num,places):
@@ -44,13 +46,15 @@ func _physics_process(delta):
 		$CollisionSound.play()
 		Velocity = Velocity.bounce(collision_object.get_normal())
 		Speed = Speed + 20
+		
 	
 func stop_ball():
 	Speed = 0
 
 func ball_continue():
-	Speed = 350
+	Speed = StartSpeed
 	_ready()
+
 func end_ball():
 	stop_ball()
 	$ball.visible = false

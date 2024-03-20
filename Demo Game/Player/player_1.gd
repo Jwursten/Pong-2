@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 400.0
+var SPEED = 400.0
 var highest_y = 175
 
 func _physics_process(_delta):

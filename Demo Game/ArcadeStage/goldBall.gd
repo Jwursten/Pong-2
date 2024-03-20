@@ -34,6 +34,7 @@ func get_Y_velocity(Velocity_X):
 	return Velocity_Y * direction
 
 func _ready():
+	name = "goldBall"
 	Velocity.x = get_X_velocity()
 	Velocity.y = get_Y_velocity(Velocity.x)
 	while Velocity.x == Velocity.y:
@@ -70,9 +71,27 @@ func _on_area_2d_body_entered(body:Node2D):
 
 		match targetPower:
 			0:
-				print("power0")
+				print("ballSpeedPower")
+				var balls = get_tree().get_nodes_in_group("BallGroup")
+
+				if(balls.size() != 1):
+					print("WARNING: ball group dosnt have 1 object, it has " + str(balls.size()))
+
+				var ball = balls[0]
+				print("\tballName: "+ball.name);
+
+				print("\tball Speed: "+str(ball.Speed))
+				ball.Speed = ball.Speed + 25
+				print("\tball Speed: "+str(ball.Speed))
+				
 			1:
-				print("power1")
+				print("CatcherSpeed")
+
+				print("\tcatcher speed: " + str(body.SPEED))
+
+				body.SPEED = body.SPEED + 300
+
+				print("\tcatcher speed: " + str(body.SPEED))
 	
 	pass 
 	
