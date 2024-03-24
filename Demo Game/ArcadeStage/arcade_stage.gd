@@ -97,7 +97,8 @@ func _game_ends():
 func _on_game_time_timeout():
 	_game_ends()
 
-
+func _spawn_ball():
+	$CountDownTimer.start()
 func _on_power_timer_timeout():
 	var PowerSpawns = get_tree().get_nodes_in_group("PowerSpawns");
 

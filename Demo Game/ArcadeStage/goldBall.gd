@@ -67,7 +67,7 @@ func _on_area_2d_body_entered(body:Node2D):
 
 		var rng = RandomNumberGenerator.new();
 		rng.randomize();
-		var targetPower = rng.randi_range(0,1);
+		var targetPower = rng.randi_range(2,2);
 
 		match targetPower:
 			0:
@@ -92,6 +92,22 @@ func _on_area_2d_body_entered(body:Node2D):
 				body.SPEED = body.SPEED + 300
 
 				print("\tcatcher speed: " + str(body.SPEED))
+			2:
+				print("split!")
+				var batts = get_tree().get_root()
+				print(batts)
+				#"var balls = get_tree().get_node("arcade_stage")"
+
+				#if(balls.size() != 1):
+					#print("WARNING: ball group dosnt have 1 object, it has " + str(balls.size()))
+				for i in range(1,10):
+					#var batt = ball.new()
+					#batts.append(batt)
+					get_tree().call_group('BallGroup', 'ball_continue')
+
+					
+					
+					
 	
 	pass 
 	
