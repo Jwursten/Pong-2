@@ -8,14 +8,13 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -501.0
-offset_top = -160.0
-offset_right = -501.0
-offset_bottom = -160.0
+offset_right = 900.0
+offset_bottom = 900.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0823529, 0.117647, 0.196078, 1)
 
 [node name="Player-3-wins-1-25-2024" type="Sprite2D" parent="."]
 position = Vector2(452, 273)
+scale = Vector2(0.936, 0.936)
 texture = ExtResource("1_6j2tv")
