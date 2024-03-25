@@ -11,6 +11,20 @@ func _ready():
 
 
 func _on_item_selected(index):
-	if _on_item_selected(index) == 0:
+	if index == 0:
+		Global.GameTimer = 60.0
+		return
+	elif index == 1:
+		Global.GameTimer = 90.0
+		return
+	elif index == 2:
+		Global.GameTimer = 120.0
+		return
+	elif index == 3:
+		Global.GameTimer = 150.0
+		return
+	elif index == 4:
+		Global.GameTimer = 240.0
+		return
+	else:
 		pass
-	pass # Replace with function body.
