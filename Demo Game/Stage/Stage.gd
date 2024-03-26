@@ -15,12 +15,11 @@ func goal_scored():
 	$PointLoss.play()
 
 func _ready():
-	Global.start()
 	#var stage_script_instance = load("res://Stage/Stage.gd").new()
 	#var callable = Callable(stage_script_instance, "_on_game_time_timeout")
 	#Global.connect("timeout", callable)
 	
-	$GameTime.start(GLobal.GameTimeer)
+	$GameTime.start(Global.GameTimer)
 	
 func _on_left_goal_body_entered(_body):
 	PlayerOneScore += 1
@@ -45,13 +44,7 @@ func _process(_delta):
 	$PlayerFourScore.text = str(PlayerFourScore)
 	$BallTimer.text = str(int($CountDownTimer.time_left))
 	$GameTimeLabel.text = str(int(Global.time_left))
-	
-	if(Global.GameOver == true):
-		var tree = get_tree();
-		if(!tree):
-			print("treeNull")
 		
-		_game_ends(tree)
 	
 	
 func _on_count_down_timer_timeout():
@@ -84,5 +77,8 @@ func changeGameOver():
 
 
 func _on_game_time_timeout():
-	call_deferred("changeGameOver")
-	print("changed game over "+str(gameOver))
+	var tree = get_tree();
+	if(!tree):
+		print("treeNull")
+	
+	_game_ends(tree)
