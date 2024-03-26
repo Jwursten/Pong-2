@@ -18,7 +18,7 @@ func _ready():
 	#var stage_script_instance = load("res://Stage/Stage.gd").new()
 	#var callable = Callable(stage_script_instance, "_on_game_time_timeout")
 	#Global.connect("timeout", callable)
-	
+	print("Starting timeer with (s)" + str(Global.GameTimer))
 	$GameTime.start(Global.GameTimer)
 	
 func _on_left_goal_body_entered(_body):
@@ -43,7 +43,7 @@ func _process(_delta):
 	$PlayerThreeScore.text = str(PlayerThreeScore)
 	$PlayerFourScore.text = str(PlayerFourScore)
 	$BallTimer.text = str(int($CountDownTimer.time_left))
-	$GameTimeLabel.text = str(int(Global.time_left))
+	$GameTimeLabel.text = str(int($GameTime.time_left))
 		
 	
 	
