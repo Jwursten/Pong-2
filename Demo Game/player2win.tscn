@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://coxtvm03uawk3"]
+[gd_scene load_steps=5 format=3 uid="uid://coxtvm03uawk3"]
 
 [ext_resource type="Texture2D" uid="uid://cxdexh51qffu7" path="res://Assets/Assets/Player-2-Wins-1-25-2024.png" id="1_v7bw7"]
+[ext_resource type="Texture2D" uid="uid://b0s2pqfhfrmwn" path="res://Assets/Assets/Back-1-31-2024.png" id="2_3pibf"]
+[ext_resource type="Script" path="res://BackButton.gd" id="3_52xuh"]
+[ext_resource type="AudioStream" uid="uid://bn24x440s1ei7" path="res://Assets/Assets/Jeremy Blake - Powerup!.mp3" id="4_gplbw"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,3 +16,19 @@ color = Color(0.0823529, 0.117647, 0.196078, 1)
 position = Vector2(457, 266)
 scale = Vector2(0.936, 0.936)
 texture = ExtResource("1_v7bw7")
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 19.0
+offset_top = 734.0
+offset_right = 1051.0
+offset_bottom = 1226.0
+scale = Vector2(0.287975, 0.287975)
+icon = ExtResource("2_3pibf")
+script = ExtResource("3_52xuh")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gplbw")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]

@@ -277,7 +277,7 @@ text = "P3 n + m"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="P3Keys2" type="Label" parent="."]
+[node name="P4Keys" type="Label" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -289,7 +289,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.180392, 0.239216, 0.368627, 1)
 theme_override_font_sizes/font_size = 30
-text = "P3 x + c"
+text = "P4 x + c"
 horizontal_alignment = 1
 vertical_alignment = 1
 
