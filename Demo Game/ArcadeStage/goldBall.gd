@@ -3,8 +3,6 @@ extends CharacterBody2D
 var Speed = 120
 var Velocity = Vector2.ZERO
 
-var PowerFunction;
-
 func round_place(num,places):
 	return (round(num*pow(10,places))/pow(10,places))
 
@@ -54,6 +52,7 @@ func stop_ball():
 func ball_continue():
 	Speed = 350
 	_ready()
+
 func end_ball():
 	stop_ball()
 
@@ -67,32 +66,77 @@ func _on_area_2d_body_entered(body:Node2D):
 
 		var rng = RandomNumberGenerator.new();
 		rng.randomize();
-		var targetPower = rng.randi_range(2,2);
+		var targetPower = rng.randi_range(0,4);
+		#var targetPower = 0; #for testing
+
+		var ballSpeedModifyer = 50
+		var paddleSpeedModifyer = 300
 
 		match targetPower:
 			0:
-				print("ballSpeedPower")
+				print("ballSpeed")
 				var balls = get_tree().get_nodes_in_group("BallGroup")
 
 				if(balls.size() != 1):
 					print("WARNING: ball group dosnt have 1 object, it has " + str(balls.size()))
 
-				var ball = balls[0]
-				print("\tballName: "+ball.name);
+		
+				#loop though all the balls.
+				for ball in balls:
+					
+					print("\tballName: " + ball.name);
 
-				print("\tball Speed: "+str(ball.Speed))
-				ball.Speed = ball.Speed + 50
-				print("\tball Speed: "+str(ball.Speed))
+					if (ball.Speed == 0):
+						print("\tBall Immobale, modifying start speed.")
+						print("\tinital speed modifyer: " + str(Global.initalBallBoost))
+						Global.initalBallBoost = Global.initalBallBoost + ballSpeedModifyer
+						print("\tinital speed modifyer: " + str(Global.initalBallBoost))
+					else:
+						print("\tball old Speed: "+str(ball.Speed))
+						ball.Speed = ball.Speed + ballSpeedModifyer
+						print("\tball new Speed: "+str(ball.Speed))
 				
 			1:
 				print("CatcherSpeed")
 
-				print("\tcatcher speed: " + str(body.SPEED))
+				print("\tcatcher old speed: " + str(body.SPEED))
 
-				body.SPEED = body.SPEED + 300
+				body.SPEED = body.SPEED + paddleSpeedModifyer
 
-				print("\tcatcher speed: " + str(body.SPEED))
+				print("\tcatcher new speed: " + str(body.SPEED))
 			2:
+				print("ballSlow")
+				var balls = get_tree().get_nodes_in_group("BallGroup")
+
+				if(balls.size() != 1):
+					print("WARNING: ball group dosnt have 1 object, it has " + str(balls.size()))
+
+		
+				#loop though all the balls.
+				for ball in balls:
+					
+					print("\tballName: " + ball.name);
+
+					if (ball.Speed == 0):
+						print("\tBall Immobale, modifying start speed.")
+						print("\tinital speed modifyer: " + str(Global.initalBallBoost))
+						Global.initalBallBoost = Global.initalBallBoost - ballSpeedModifyer
+						print("\tinital speed modifyer: " + str(Global.initalBallBoost))
+					else:
+						print("\tball old Speed: "+str(ball.Speed))
+						ball.Speed = ball.Speed - ballSpeedModifyer
+						print("\tball new Speed: "+str(ball.Speed))
+				
+			3:
+				print("CatcherSlow")
+
+				print("\tcatcher old speed: " + str(body.SPEED))
+
+				body.SPEED = body.SPEED - paddleSpeedModifyer
+
+				print("\tcatcher new speed: " + str(body.SPEED))
+			4:
+				#this power will break all other ball based powers as the stand now.
 				print("split!")
 				var batts = get_tree().get_root()
 				print(batts)

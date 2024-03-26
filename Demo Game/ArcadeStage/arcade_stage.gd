@@ -20,6 +20,9 @@ func goal_scored():
 
 func _ready():
 	$GameTime.start(Global.GameTimer)
+	get_tree().call_group('BallGroup', 'stop_ball')
+	$CountDownTimer.start()
+	$BallTimer.visible = true
 
 	resetPowerTimer()
 
@@ -69,6 +72,7 @@ func _process(_delta):
 func _on_count_down_timer_timeout():
 	var balls = get_tree().get_nodes_in_group("BallGroup")
 
+	# this warning is going to be triped by the split power.
 	if(balls.size() != 1):
 		print("WARNING: ball group dosnt have 1 object, it has " + str(balls.size()))
 
@@ -99,6 +103,7 @@ func _on_game_time_timeout():
 
 func _spawn_ball():
 	$CountDownTimer.start()
+
 func _on_power_timer_timeout():
 	var PowerSpawns = get_tree().get_nodes_in_group("PowerSpawns");
 

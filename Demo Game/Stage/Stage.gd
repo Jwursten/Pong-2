@@ -18,7 +18,12 @@ func _ready():
 	#var stage_script_instance = load("res://Stage/Stage.gd").new()
 	#var callable = Callable(stage_script_instance, "_on_game_time_timeout")
 	#Global.connect("timeout", callable)
-	print("Starting timeer with (s)" + str(Global.GameTimer))
+
+	get_tree().call_group('BallGroup', 'stop_ball')
+	$CountDownTimer.start()
+	$BallTimer.visible = true
+	
+	print("stage:Starting timeer with (s)" + str(Global.GameTimer))
 	$GameTime.start(Global.GameTimer)
 	
 func _on_left_goal_body_entered(_body):

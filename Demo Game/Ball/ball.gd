@@ -52,7 +52,10 @@ func stop_ball():
 	Speed = 0
 
 func ball_continue():
-	Speed = StartSpeed
+	Speed = StartSpeed + Global.initalBallBoost
+
+	Global.initalBallBoost = 0
+	
 	_ready()
 
 func end_ball():

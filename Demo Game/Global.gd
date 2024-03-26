@@ -4,6 +4,10 @@ var GameTimer = 60.0
 
 var TimerOptionIndex = 0
 
+# Powers
+
+var initalBallBoost = 0
+
 #var GameOver = false
 
 #func _ready():
