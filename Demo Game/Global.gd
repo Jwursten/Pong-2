@@ -2,6 +2,8 @@ extends Timer
 
 var GameTimer = 60.0
 
+var TimerOptionIndex = 0
+
 #var GameOver = false
 
 #func _ready():
