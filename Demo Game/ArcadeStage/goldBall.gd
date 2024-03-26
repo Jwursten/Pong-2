@@ -81,7 +81,7 @@ func _on_area_2d_body_entered(body:Node2D):
 				print("\tballName: "+ball.name);
 
 				print("\tball Speed: "+str(ball.Speed))
-				ball.Speed = ball.Speed + 25
+				ball.Speed = ball.Speed + 50
 				print("\tball Speed: "+str(ball.Speed))
 				
 			1:
