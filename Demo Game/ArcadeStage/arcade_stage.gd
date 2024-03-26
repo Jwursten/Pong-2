@@ -19,7 +19,7 @@ func goal_scored():
 	$PointLoss.play()
 
 func _ready():
-	$GameTime.start()
+	$GameTime.start(Global.GameTimer)
 
 	resetPowerTimer()
 
