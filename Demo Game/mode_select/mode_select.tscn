@@ -38,6 +38,7 @@ offset_top = 252.0
 offset_right = 1214.0
 offset_bottom = 620.0
 scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.14902, 0.592157, 0.27451, 1)
 icon = ExtResource("2_xtr6i")
 script = ExtResource("3_l42cp")
 
