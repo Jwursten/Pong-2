@@ -31,7 +31,7 @@ scale = Vector2(0.27761, 0.27761)
 icon = ExtResource("2_jdl21")
 script = ExtResource("3_dl40t")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_cshd0")
 autoplay = true
 bus = &"Music"
