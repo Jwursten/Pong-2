@@ -229,7 +229,7 @@ position = Vector2(73, 311.5)
 shape = SubResource("RectangleShape2D_8aq2x")
 
 [node name="CountDownTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 2.0
 one_shot = true
 
 [node name="PointLoss" type="AudioStreamPlayer" parent="."]
