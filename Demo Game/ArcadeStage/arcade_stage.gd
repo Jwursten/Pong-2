@@ -80,7 +80,14 @@ func _on_count_down_timer_timeout():
 
 	ball.StartSpeed = ballSpeed
 
-	ball.ball_continue()
+	
+
+	if (Global.delayedChaous == true):
+		Global.delayedChaous = false
+		Global.chaous()
+		
+	else:
+		ball.ball_continue()
 
 	$BallTimer.visible = false
 

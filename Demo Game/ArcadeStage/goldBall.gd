@@ -66,11 +66,11 @@ func _on_area_2d_body_entered(body:Node2D):
 
 		var rng = RandomNumberGenerator.new();
 		rng.randomize();
-		var targetPower = rng.randi_range(0,4);
+		var targetPower = rng.randi_range(4,4);
 		#var targetPower = 0; #for testing
 
-		var ballSpeedModifyer = 50
-		var paddleSpeedModifyer = 300
+		var ballSpeedModifyer = 75
+		var paddleSpeedModifyer = 225
 
 		match targetPower:
 			0:
@@ -136,21 +136,22 @@ func _on_area_2d_body_entered(body:Node2D):
 
 				print("\tcatcher new speed: " + str(body.SPEED))
 			4:
-				#this power will break all other ball based powers as the stand now.
-				
-				#"var balls = get_tree().get_node("arcade_stage")"
-				var rand = RandomNumberGenerator.new()
-				var top = rand.randf_range(5, 12)
-				#if(balls.size() != 1):
-					#print("WARNING: ball group dosnt have 1 object, it has " + str(balls.size()))
-				for i in range(1,top):
-					#var batt = ball.new()
-					#batts.append(batt)
-					get_tree().call_group('BallGroup', 'ball_continue')
+				var balls = get_tree().get_nodes_in_group("BallGroup")
 
-					await get_tree().create_timer(.2).timeout
+				if(balls.size() != 1):
+					print("WARNING: ball group dosnt have 1 object, it has " + str(balls.size()))
+				
+				var ball = balls[0]
+
+				if (ball.Speed == 0):
+					Global.delayedChaous = true;
+					print("Chaous has been delayed.")
+				else:
+					Global.chaous()
 					
 					
 	
 	pass 
-	
+
+
+
