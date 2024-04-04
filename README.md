@@ -7,3 +7,6 @@ Resources used:
 
 
 - [Godot Multiplayer](https://youtu.be/e0JLO_5UgQo?si=pSRFsSxWD0kp0cik) (the good bit start at 18:13)
+
+
+Loom Video https://www.loom.com/share/a41b2c40ee4740fea0cfcc9bcc7317fd?sid=1a74ab45-989b-47aa-8009-838f0b58682d
