@@ -34,6 +34,8 @@ func get_Y_velocity(Velocity_X):
 	return Velocity_Y * direction
 
 func _ready():
+	get_parent().get_node("MultiplayerSynchronizer").set_multiplayer_authority(1)
+
 	Velocity.x = get_X_velocity()
 	Velocity.y = get_Y_velocity(Velocity.x)
 	while Velocity.x == Velocity.y:

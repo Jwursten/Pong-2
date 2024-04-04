@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cek5bt5edjg4r"
-path="res://.godot/imported/Draw-1-31-2024.png-bdaa5894dca6cb7fd90a4bae19b0147b.ctex"
+uid="uid://qmv4lervt6al"
+path="res://.godot/imported/Rickrolling_QR_code.png-2cfdaaf775710a0c71f8422a6c01b763.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Assets/Draw-1-31-2024.png"
-dest_files=["res://.godot/imported/Draw-1-31-2024.png-bdaa5894dca6cb7fd90a4bae19b0147b.ctex"]
+source_file="res://Rickrolling_QR_code.png"
+dest_files=["res://.godot/imported/Rickrolling_QR_code.png-2cfdaaf775710a0c71f8422a6c01b763.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cek5bt5edjg4r"
-path="res://.godot/imported/Draw-1-31-2024.png-bdaa5894dca6cb7fd90a4bae19b0147b.ctex"
+uid="uid://vralfh8pp6xe"
+path="res://.godot/imported/Multiplayer-2-1-2024.png-6d756437ddcfe03906fd68adb860dbfa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Assets/Draw-1-31-2024.png"
-dest_files=["res://.godot/imported/Draw-1-31-2024.png-bdaa5894dca6cb7fd90a4bae19b0147b.ctex"]
+source_file="res://Assets/Assets/Multiplayer-2-1-2024.png"
+dest_files=["res://.godot/imported/Multiplayer-2-1-2024.png-6d756437ddcfe03906fd68adb860dbfa.ctex"]
 
 [params]
 

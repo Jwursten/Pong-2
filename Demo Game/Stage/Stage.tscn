@@ -1,12 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch4q32k7uycd7"]
+[gd_scene load_steps=9 format=3 uid="uid://ch4q32k7uycd7"]
 
 [ext_resource type="Script" path="res://Stage/Stage.gd" id="1_oe0k2"]
-[ext_resource type="PackedScene" uid="uid://box4qfmp1mwhd" path="res://Player/player_1.tscn" id="1_vkcv5"]
 [ext_resource type="Texture2D" uid="uid://d046b3vbprqky" path="res://Assets/Assets/Pink_Square.png" id="2_e632i"]
-[ext_resource type="PackedScene" uid="uid://btqqyktcrmdar" path="res://Opponent/opponent.tscn" id="2_p04be"]
 [ext_resource type="PackedScene" uid="uid://d3bnbau462n6" path="res://Ball/ball.tscn" id="3_poq0d"]
-[ext_resource type="PackedScene" uid="uid://chudnf1cqb5un" path="res://Player3/Player3.tscn" id="5_pexpm"]
-[ext_resource type="PackedScene" uid="uid://dojjhtfmxuwcb" path="res://Player4/Player4.tscn" id="6_8g8be"]
 [ext_resource type="AudioStream" uid="uid://cl1usgjf5x81k" path="res://Assets/Assets/ping_pong_8bit_beeep.ogg" id="8_rgs6c"]
 [ext_resource type="AudioStream" uid="uid://b5pdoecvaskv5" path="res://Assets/Assets/AdhesiveWombat - Night Shade.mp3" id="9_als0k"]
 
@@ -15,6 +11,29 @@ size = Vector2(179.605, 179.605)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8aq2x"]
 size = Vector2(166, 635)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gm2td"]
+properties/0/path = NodePath("Ball:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("PlayerOneScore:text")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("PlayerTwoScore:text")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("PlayerThreeScore:text")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("PlayerFourScore:text")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("BallTimer:text")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("GameTimeLabel:text")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [node name="Stage" type="Node"]
 script = ExtResource("1_oe0k2")
@@ -31,7 +50,10 @@ color = Color(0.0823529, 0.117647, 0.196078, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -300.0
+offset_left = 168.0
+offset_top = 413.0
+offset_right = -588.0
+offset_bottom = -421.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.639216, 0.286275, 0.643137, 1)
@@ -44,7 +66,10 @@ vertical_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 300.0
+offset_left = 600.0
+offset_top = 390.0
+offset_right = -177.0
+offset_bottom = -410.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0.635294, 0.909804, 1)
@@ -57,7 +82,10 @@ vertical_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 300.0
+offset_left = 376.0
+offset_top = 568.0
+offset_right = -374.0
+offset_bottom = -259.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.92549, 0.109804, 0.141176, 1)
@@ -70,7 +98,10 @@ vertical_alignment = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -300.0
+offset_left = 376.0
+offset_top = 276.0
+offset_right = -356.0
+offset_bottom = -538.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.407843, 0.901961, 0.105882, 1)
@@ -111,24 +142,8 @@ text = "BallTime"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Player1" parent="." instance=ExtResource("1_vkcv5")]
-position = Vector2(30, 450)
-scale = Vector2(0.9, 0.9)
-
-[node name="player2" parent="." instance=ExtResource("2_p04be")]
-position = Vector2(870, 450)
-scale = Vector2(0.9, 0.9)
-
 [node name="Ball" parent="." instance=ExtResource("3_poq0d")]
 position = Vector2(450, 450)
-scale = Vector2(0.9, 0.9)
-
-[node name="Player4" parent="." instance=ExtResource("5_pexpm")]
-position = Vector2(450, 30)
-scale = Vector2(0.9, 0.9)
-
-[node name="Player3" parent="." instance=ExtResource("6_8g8be")]
-position = Vector2(450, 870)
 scale = Vector2(0.9, 0.9)
 
 [node name="TopLeftCorner" type="StaticBody2D" parent="."]
