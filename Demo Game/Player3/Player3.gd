@@ -1,13 +1,12 @@
 extends CharacterBody2D
 
 
-const SPEED = 400.0
+var SPEED = 400.0
 var maxLeft_x = 175
 var maxRight_x = 725
 
-func _enter_tree():
-	print(str(multiplayer.get_unique_id()) + ": Player3: _enter_tree: name: `" + name + "`")
-	get_node("%MultiplayerSynchronizer3").set_multiplayer_authority(str(name).to_int())
+func _ready():
+	name = "Player3"
 
 func _physics_process(_delta):
 	if (get_node("%MultiplayerSynchronizer3").get_multiplayer_authority() == multiplayer.get_unique_id()):

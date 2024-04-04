@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1u5ppf5y7f3v"]
+[gd_scene load_steps=5 format=3 uid="uid://b1u5ppf5y7f3v"]
 
 [ext_resource type="Texture2D" uid="uid://blw7oea2txrk6" path="res://Assets/Assets/Player-3-Wins-1-25-2024.png" id="1_6j2tv"]
+[ext_resource type="Texture2D" uid="uid://b0s2pqfhfrmwn" path="res://Assets/Assets/Back-1-31-2024.png" id="2_jdl21"]
+[ext_resource type="Script" path="res://BackButton.gd" id="3_dl40t"]
+[ext_resource type="AudioStream" uid="uid://bn24x440s1ei7" path="res://Assets/Assets/Jeremy Blake - Powerup!.mp3" id="4_cshd0"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -8,14 +11,29 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -501.0
-offset_top = -160.0
-offset_right = -501.0
-offset_bottom = -160.0
+offset_right = 900.0
+offset_bottom = 900.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0823529, 0.117647, 0.196078, 1)
 
 [node name="Player-3-wins-1-25-2024" type="Sprite2D" parent="."]
 position = Vector2(452, 273)
+scale = Vector2(0.936, 0.936)
 texture = ExtResource("1_6j2tv")
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 736.0
+offset_right = 1052.0
+offset_bottom = 1228.0
+scale = Vector2(0.27761, 0.27761)
+icon = ExtResource("2_jdl21")
+script = ExtResource("3_dl40t")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cshd0")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]
