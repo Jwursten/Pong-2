@@ -232,7 +232,7 @@ shape = SubResource("RectangleShape2D_8aq2x")
 wait_time = 2.0
 one_shot = true
 
-[node name="PointLoss" type="AudioStreamPlayer" parent="."]
+[node name="PointLoss" type="AudioStreamPlayer" parent="." groups=["PointLoss_SkrewYourNeighbors"]]
 stream = ExtResource("8_mf68r")
 bus = &"Sfx"
 

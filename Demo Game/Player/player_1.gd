@@ -3,6 +3,9 @@ extends CharacterBody2D
 var SPEED = 400.0
 var highest_y = 175
 
+func _ready():
+	name = "Player1"
+
 func _physics_process(_delta):
 	var direction
 	# detect player input
