@@ -82,8 +82,6 @@ var PlayerTwoScore = 0
 var PlayerThreeScore = 0
 var PlayerFourScore = 0
 
-var gameOver = false
-
 func goal_scored():
 	$Ball.position = Vector2(450, 450)
 	get_tree().call_group('BallGroup', 'stop_ball')
@@ -91,18 +89,7 @@ func goal_scored():
 	$BallTimer.visible = true
 	$PointLoss.play()
 
-func _ready():
-	#var stage_script_instance = load("res://Stage/Stage.gd").new()
-	#var callable = Callable(stage_script_instance, "_on_game_time_timeout")
-	#Global.connect("timeout", callable)
 
-	get_tree().call_group('BallGroup', 'stop_ball')
-	$CountDownTimer.start()
-	$BallTimer.visible = true
-	
-	print("stage:Starting timeer with (s)" + str(Global.GameTimer))
-	$GameTime.start(Global.GameTimer)
-	
 func _on_left_goal_body_entered(_body):
 	PlayerOneScore += 1
 	goal_scored()
@@ -126,7 +113,6 @@ func _process(_delta):
 	$PlayerFourScore.text = str(PlayerFourScore)
 	$BallTimer.text = str(int($CountDownTimer.time_left))
 	$GameTimeLabel.text = str(int($GameTime.time_left))
-		
 	
 	
 func _on_count_down_timer_timeout():
@@ -134,33 +120,28 @@ func _on_count_down_timer_timeout():
 	$BallTimer.visible = false
 
 
-func _game_ends(tree):
-	var min_score = min(PlayerOneScore, PlayerTwoScore, PlayerThreeScore, PlayerFourScore)
-	
-	#var tree = get_tree()
-	
-	if !tree:
-		print("null")
-		
-	if PlayerOneScore == min_score:
-		tree.change_scene_to_file("res://player1win.tscn")
-	elif PlayerTwoScore == min_score:
-		tree.change_scene_to_file("res://player2win.tscn")
-	elif PlayerThreeScore == min_score:
-		tree.change_scene_to_file("res://player3win.tscn")
-	elif PlayerFourScore == min_score:
-		tree.change_scene_to_file("res://player4win.tscn")
+func _game_ends():
+	if  int(PlayerOneScore) < int(PlayerTwoScore) and int(PlayerOneScore) < int(PlayerFourScore) and int(PlayerOneScore) < int(PlayerThreeScore):
+		get_tree().change_scene_to_file("res://PlayerWinScreens/player1win.tscn")
+	elif int(PlayerTwoScore) < int(PlayerOneScore) and int(PlayerTwoScore) < int(PlayerFourScore) and int(PlayerTwoScore) < int(PlayerThreeScore):
+		get_tree().change_scene_to_file("res://PlayerWinScreens/player2win.tscn")
+	elif int(PlayerThreeScore) < int(PlayerOneScore) and int(PlayerThreeScore) < int(PlayerFourScore) and int(PlayerThreeScore) < int(PlayerTwoScore):
+		get_tree().change_scene_to_file("res://PlayerWinScreens/player3win.tscn")
+	elif int(PlayerFourScore) < int(PlayerOneScore) and int(PlayerFourScore) < int(PlayerThreeScore) and int(PlayerFourScore) < int(PlayerTwoScore):
+		get_tree().change_scene_to_file("res://PlayerWinScreens/player4win.tscn")
 	else:
-		print("It's a tie or an error occurred.")
-
-
-func changeGameOver():
-	gameOver = false
+		pass
 
 
 func _on_game_time_timeout():
-	var tree = get_tree();
-	if(!tree):
-		print("treeNull")
-	
-	_game_ends(tree)
+	_game_ends()
+
+
+func DebugPrint(msg:String, tabLayer:int = 0, serverOnly:bool = false):
+
+	if (serverOnly == false or (serverOnly == true and multiplayer.is_server() == true)):
+		var tabStr = ""
+		for i in range(tabLayer):
+			tabStr = tabStr + ">  "
+
+		print(tabStr + str(multiplayer.get_unique_id()) + ": " + msg)

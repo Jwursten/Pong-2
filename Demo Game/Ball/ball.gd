@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var StartSpeed = 350
-
 var Speed = 350
 var Velocity = Vector2.ZERO
 
@@ -48,18 +46,13 @@ func _physics_process(delta):
 		$CollisionSound.play()
 		Velocity = Velocity.bounce(collision_object.get_normal())
 		Speed = Speed + 20
-		
 	
 func stop_ball():
 	Speed = 0
 
 func ball_continue():
-	Speed = StartSpeed + Global.initalBallBoost
-
-	Global.initalBallBoost = 0
-	
+	Speed = 350
 	_ready()
-
 func end_ball():
 	stop_ball()
 	$ball.visible = false
