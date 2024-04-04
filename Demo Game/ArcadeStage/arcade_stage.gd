@@ -1,10 +1,5 @@
 extends Node
 
-var PlayerOneScore = 0
-var PlayerTwoScore = 0
-var PlayerThreeScore = 0
-var PlayerFourScore = 0
-
 const ballSpeed = 225
 
 @export var PowerBallScene: PackedScene
@@ -34,37 +29,37 @@ func resetPowerTimer():
 
 func _on_left_goal_body_entered(_body):
 	if (_body.name == "Ball"):
-		PlayerOneScore += 1
+		Global.PlayerOneScore += 1
 	else:
-		PlayerOneScore += 2
+		Global.PlayerOneScore += 2
 	goal_scored()
 
 func _on_right_goal_body_entered(_body):
 	if (_body.name == "Ball"):
-		PlayerTwoScore += 1
+		Global.PlayerTwoScore += 1
 	else:
-		PlayerTwoScore += 2
+		Global.PlayerTwoScore += 2
 	goal_scored()
 
 func _on_top_goal_body_entered(_body):
 	if (_body.name == "Ball"):
-		PlayerFourScore += 1
+		Global.PlayerFourScore += 1
 	else:
-		PlayerFourScore += 2
+		Global.PlayerFourScore += 2
 	goal_scored()
 
 func _on_bottom_goal_body_entered(_body):
 	if (_body.name == "Ball"):
-		PlayerThreeScore += 1
+		Global.PlayerThreeScore += 1
 	else:
-		PlayerThreeScore += 2
+		Global.PlayerThreeScore += 2
 	goal_scored()
 
 func _process(_delta):
-	$PlayerOneScore.text = str(PlayerOneScore)
-	$PlayerTwoScore.text = str(PlayerTwoScore)
-	$PlayerThreeScore.text = str(PlayerThreeScore)
-	$PlayerFourScore.text = str(PlayerFourScore)
+	$PlayerOneScore.text = str(Global.PlayerOneScore)
+	$PlayerTwoScore.text = str(Global.PlayerTwoScore)
+	$PlayerThreeScore.text = str(Global.PlayerThreeScore)
+	$PlayerFourScore.text = str(Global.PlayerFourScore)
 	$BallTimer.text = str(int($CountDownTimer.time_left))
 	$GameTimeLabel.text = str(int($GameTime.time_left))
 	
@@ -93,13 +88,13 @@ func _on_count_down_timer_timeout():
 
 
 func _game_ends():
-	if  int(PlayerOneScore) < int(PlayerTwoScore) and int(PlayerOneScore) < int(PlayerFourScore) and int(PlayerOneScore) < int(PlayerThreeScore):
+	if  int(Global.PlayerOneScore) < int(Global.PlayerTwoScore) and int(Global.PlayerOneScore) < int(Global.PlayerFourScore) and int(Global.PlayerOneScore) < int(Global.PlayerThreeScore):
 		get_tree().change_scene_to_file("res://player1win.tscn")
-	elif int(PlayerTwoScore) < int(PlayerOneScore) and int(PlayerTwoScore) < int(PlayerFourScore) and int(PlayerTwoScore) < int(PlayerThreeScore):
+	elif int(Global.PlayerTwoScore) < int(Global.PlayerOneScore) and int(Global.PlayerTwoScore) < int(Global.PlayerFourScore) and int(Global.PlayerTwoScore) < int(Global.PlayerThreeScore):
 		get_tree().change_scene_to_file("res://player2win.tscn")
-	elif int(PlayerThreeScore) < int(PlayerOneScore) and int(PlayerThreeScore) < int(PlayerFourScore) and int(PlayerThreeScore) < int(PlayerTwoScore):
+	elif int(Global.PlayerThreeScore) < int(Global.PlayerOneScore) and int(Global.PlayerThreeScore) < int(Global.PlayerFourScore) and int(Global.PlayerThreeScore) < int(Global.PlayerTwoScore):
 		get_tree().change_scene_to_file("res://player3win.tscn")
-	elif int(PlayerFourScore) < int(PlayerOneScore) and int(PlayerFourScore) < int(PlayerThreeScore) and int(PlayerFourScore) < int(PlayerTwoScore):
+	elif int(Global.PlayerFourScore) < int(Global.PlayerOneScore) and int(Global.PlayerFourScore) < int(Global.PlayerThreeScore) and int(Global.PlayerFourScore) < int(Global.PlayerTwoScore):
 		get_tree().change_scene_to_file("res://player4win.tscn")
 	else:
 		pass

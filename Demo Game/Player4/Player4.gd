@@ -5,6 +5,9 @@ var SPEED = 400.0
 var maxLeft_x = 175
 var maxRight_x = 725
 
+func _ready():
+	name = "Player4"
+
 func _physics_process(_delta):
 	var direction
 	if Input.is_key_pressed(KEY_N) and position.x >= maxLeft_x:

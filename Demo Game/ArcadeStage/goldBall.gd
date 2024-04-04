@@ -66,7 +66,7 @@ func _on_area_2d_body_entered(body:Node2D):
 
 		var rng = RandomNumberGenerator.new();
 		rng.randomize();
-		var targetPower = rng.randi_range(4,4);
+		var targetPower = rng.randi_range(0,5);
 		#var targetPower = 0; #for testing
 
 		var ballSpeedModifyer = 75
@@ -148,8 +148,33 @@ func _on_area_2d_body_entered(body:Node2D):
 					print("Chaous has been delayed.")
 				else:
 					Global.chaous()
-					
-					
+			5:
+				print("skrewYourNeighbors")
+				#  This Power causes everyone else to gain 2 points
+				
+				if body.name == "Player1":
+					Global.PlayerTwoScore += 2
+					Global.PlayerThreeScore += 2
+					Global.PlayerFourScore += 2
+				if body.name == "Player2":
+					Global.PlayerOneScore += 2
+					Global.PlayerThreeScore += 2
+					Global.PlayerFourScore += 2
+				if body.name == "Player3":
+					Global.PlayerOneScore += 2
+					Global.PlayerTwoScore += 2
+					Global.PlayerFourScore += 2
+				if body.name == "Player4":
+					Global.PlayerOneScore += 2
+					Global.PlayerTwoScore += 2
+					Global.PlayerThreeScore += 2
+				
+				var soundOfSuccess = get_tree().get_nodes_in_group("PointLoss_SkrewYourNeighbors")
+				
+				if(soundOfSuccess.size() != 1):
+					print("\tWARNING: PointLoss_SkrewYourNeighbors group dosnt have 1 object, it has " + str(soundOfSuccess.size()))
+				
+				soundOfSuccess[0].play()
 	
 	pass 
 

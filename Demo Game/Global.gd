@@ -10,6 +10,12 @@ var initalBallBoost = 0
 
 var delayedChaous = false;
 
+var PlayerOneScore = 0
+var PlayerTwoScore = 0
+var PlayerThreeScore = 0
+var PlayerFourScore = 0
+
+
 #var GameOver = false
 
 #func _ready():

@@ -4,6 +4,9 @@ extends CharacterBody2D
 var SPEED = 400.0
 var highest_y = 175
 
+func _ready():
+	name = "Player2"
+
 func _physics_process(_delta):
 	var direction
 	if Input.is_key_pressed(KEY_UP) and position.y >= highest_y:
