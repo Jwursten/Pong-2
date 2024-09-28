@@ -8,6 +8,8 @@ What we have created is the game Pong, but four player. It allows for more peopl
 Pong game, but the layout is redesigned for four people. We also added an extra mode, adding power ups
 and abilities to what we call "arcade mode". 
 
+You can find a video of this project at [Here](https://www.loom.com/share/a41b2c40ee4740fea0cfcc9bcc7317fd?sid=1a74ab45-989b-47aa-8009-838f0b58682d)
+
 
 # Development Environment
 
